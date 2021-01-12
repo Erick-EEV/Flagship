@@ -1,0 +1,2 @@
+class Bud < ApplicationRecord
+end
