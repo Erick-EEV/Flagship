@@ -42,22 +42,22 @@ openWorldChatroom = Chatroom.create(title: "Best Open World's", server_id: serve
 repairsChatroom = Chatroom.create(title: "Bike Repair Help", server_id: server2.id)
 plansChatroom = Chatroom.create(title: "Plans!", server_id: server3.id)
 
-Message.create(chatroom_id: fpsChatroom.id, user_id: erick.id, text: "Black Ops 1 was the best FPS")
-Message.create(chatroom_id: fpsChatroom.id, user_id: vita.id, text: "Nahh man the original Halo was the best!")
-Message.create(chatroom_id: openWorldChatroom.id, user_id: erick.id, text: "No Man's Sky turned out really good!")
-Message.create(chatroom_id: openWorldChatroom.id, user_id: vita.id, text: "Yeahh After a year of updates lol")
+Message.create(chatroom_id: fpsChatroom.id, user_id: erick.id, owner: erick.username,text: "Black Ops 1 was the best FPS")
+Message.create(chatroom_id: fpsChatroom.id, user_id: vita.id, owner: vita.username,text: "Nahh man the original Halo was the best!")
+Message.create(chatroom_id: openWorldChatroom.id, user_id: erick.id, owner: erick.username,text: "No Man's Sky turned out really good!")
+Message.create(chatroom_id: openWorldChatroom.id, user_id: vita.id, owner: vita.username,text: "Yeahh After a year of updates lol")
 
 
-Message.create(chatroom_id: chopvraceChatroom.id, user_id: erick.id, text: "Racebikes are better because you can race them duhh")
-Message.create(chatroom_id: chopvraceChatroom.id, user_id: rico.id, text: "But you can actually relax when you're riding a chopper")
-Message.create(chatroom_id: repairsChatroom.id, user_id: erick.id, text: "Does anyone have a wrench I could borrow?")
-Message.create(chatroom_id: repairsChatroom.id, user_id: rico.id, text: "Yeahh what are you working on?")
+Message.create(chatroom_id: chopvraceChatroom.id, user_id: erick.id, owner: erick.username,text: "Racebikes are better because you can race them duhh")
+Message.create(chatroom_id: chopvraceChatroom.id, user_id: rico.id, owner: rico.username,text: "But you can actually relax when you're riding a chopper")
+Message.create(chatroom_id: repairsChatroom.id, user_id: erick.id, owner: erick.username,text: "Does anyone have a wrench I could borrow?")
+Message.create(chatroom_id: repairsChatroom.id, user_id: rico.id, owner: rico.username,text: "Yeahh what are you working on?")
 
 
-Message.create(chatroom_id: barorsmokeChatroom.id, user_id: vita.id, text: "I really preffer Bars since they have dancefloors personally")
-Message.create(chatroom_id: barorsmokeChatroom, user_id: rico.id, text: "I'm atually not much of a drinker so I preffer a Hookah Lounge")
-Message.create(chatroom_id: plansChatroom.id, user_id: vita.id, text: "I'm free this weekend if anyone wants to go out!?")
-Message.create(chatroom_id: plansChatroom.id, user_id: rico.id, text: "I'm sorry I gotta work this weekend, maybe next weekend!")
+Message.create(chatroom_id: barorsmokeChatroom.id, user_id: vita.id, owner: vita.username,text: "I really preffer Bars since they have dancefloors personally")
+Message.create(chatroom_id: barorsmokeChatroom, user_id: rico.id, owner: rico.username,text: "I'm atually not much of a drinker so I preffer a Hookah Lounge")
+Message.create(chatroom_id: plansChatroom.id, user_id: vita.id, owner: vita.username,text: "I'm free this weekend if anyone wants to go out!?")
+Message.create(chatroom_id: plansChatroom.id, user_id: rico.id, owner: rico.username,text: "I'm sorry I gotta work this weekend, maybe next weekend!")
 
 
 
