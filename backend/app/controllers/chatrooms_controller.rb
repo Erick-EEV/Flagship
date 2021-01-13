@@ -5,12 +5,12 @@ class ChatroomsController < ApplicationController
   def index
     @chatrooms = Chatroom.all
 
-    render json: @chatrooms
+    render json: @chatrooms, include: :messages
   end
 
   # GET /chatrooms/1
   def show
-    render json: @chatroom
+    render json: @chatroom, include: :messages
   end
 
   # POST /chatrooms

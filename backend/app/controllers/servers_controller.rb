@@ -5,7 +5,7 @@ class ServersController < ApplicationController
   def index
     @servers = Server.all
 
-    render json: @servers
+    render json: @servers, include: :members
   end
 
   # GET /servers/1
