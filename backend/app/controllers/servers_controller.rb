@@ -4,7 +4,7 @@ class ServersController < ApplicationController
   # GET /servers
   def index
     @servers = Server.all
-
+    # x = Server.first.chatrooms.first.messages[0][:user_id]
     render json: @servers, include: :members
   end
 
