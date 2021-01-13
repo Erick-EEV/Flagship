@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_155511) do
   end
 
   create_table "messages", force: :cascade do |t|
+    t.integer "chatroom_id"
     t.integer "user_id"
     t.text "text"
     t.datetime "created_at", precision: 6, null: false
@@ -55,7 +56,6 @@ ActiveRecord::Schema.define(version: 2021_01_12_155511) do
   create_table "servers", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
-    t.boolean "joined"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

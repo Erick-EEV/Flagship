@@ -3,6 +3,8 @@ class User < ApplicationRecord
     
     has_many :chatrooms, through: :servers
 
+    has_many :messages, through: :chatrooms
+
     has_many :active_relationships, class_name: "Bud", foreign_key: :buddie_id, dependent: :destroy
     has_many :budders, through: :active_relationships, source: :budder
     
