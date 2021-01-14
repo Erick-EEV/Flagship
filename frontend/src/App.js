@@ -8,8 +8,8 @@ import SmallSidebar from './container/SmallSidebar'
 function App() {
   return (
     <div className="App">
-    <SmallSidebar />
     <LoginPage />
+    <SmallSidebar />
     </div>
   );
 }
