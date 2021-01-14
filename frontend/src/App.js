@@ -2,11 +2,15 @@ import './App.css';
 
 
 import LoginPage from './container/LoginPage'
+import SmallSidebar from './container/SmallSidebar'
+import BigSidebar from './container/BigSidebar'
 
 function App() {
   return (
     <div className="App">
-    <LoginPage/>
+    <SmallSidebar />
+    <BigSidebar />
+    <LoginPage />
     </div>
   );
 }

@@ -1,12 +1,10 @@
-import React, { Component } from "react";
-import { FaBeer } from 'react-icons/fa'
+import React, { Component } from 'react'
 
-export default class LoginForm extends Component {
-  render() {
-    return (
-      <div>
-      {/* <h1>Hello World <FaBeer /> </h1> */}
-{/* <div class="bg-gray-200">
+export default class BigSidebar extends Component {
+    render() {
+        return (
+            <div>
+                <div class="bg-gray-200">
     <div class="flex flex-col sm:flex-row sm:justify-around">
         <div class="w-64 h-screen bg-white">
             <div class="flex items-center justify-center mt-10">
@@ -114,16 +112,8 @@ export default class LoginForm extends Component {
             </div>
         </div>
     </div>
-</div> */}
-        {/* <div className="grid min-h-screen grid-cols-4 gap-3 bg-blue-300">
-          <div className="row-span-2 p-3 bg-red-200 rounded">1</div>
-          <div className="p-3 bg-green-300 rounded">2</div>
-          <div className="p-3 bg-yellow-100 rounded">3</div>
-          <div className="row-span-2 p-3 bg-red-200 rounded">4</div>
-          <div className="p-3 bg-white rounded">5</div>
-          <div className="p-3 bg-blue-500 rounded">6</div>
-        </div> */}
-      </div>
-    );
-  }
+</div>
+            </div>
+        )
+    }
 }
