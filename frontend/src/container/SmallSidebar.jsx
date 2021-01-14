@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import Image from '../images/boatlogo.png'
+import BigSidebar from './BigSidebar'
 
 
 export default class SmallSidebar extends Component {
     render() {
         return (
             <div>
-
 <div class="flex flex-row h-full">
-
+       
       <nav class="bg-gray-900 w-20  justify-between flex flex-col ">
-
-    
           <div class="mt-10">
+                {/* server-circles */}
+                <div className="home-img">
+            <a href="#">
+              <img src={Image} class="rounded-full w-10 h-10 mb-3 mx-auto"/>
+            </a>
+            </div>
             <ul>
               <li class="mb-6">
                 <a href="#">
@@ -33,22 +37,13 @@ export default class SmallSidebar extends Component {
                   </span>
                 </a>
               </li>
-              
             </ul>
-          {/* server-circles */}
-          <div class="mt-10 mb-10">
-          <a href="#">
-            <img
-              src= {Image}
-              class="rounded-full w-10 h-10 mb-3 mx-auto"
-            />
-          </a>
-        </div>
-          </div>
-
+  
+            </div>
       </nav>
-  <div class="px-16 py-4 text-gray-700 bg-gray-200 h-screen w-screen">
-      </div>
+      <div class="big-side-bar">
+            <BigSidebar/>
+                  </div>
     </div>
             </div>
         )
