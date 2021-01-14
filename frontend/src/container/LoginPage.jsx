@@ -5,7 +5,7 @@ export default class LoginPage extends Component {
     render() {
         return (
             <div>
-                <LoginForm />
+                <LoginForm logIn={this.props.logIn} submitCallBack={this.props.submitCallBack}/>
             </div>
         )
     }

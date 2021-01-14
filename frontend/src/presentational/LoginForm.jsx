@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { FaBeer } from 'react-icons/fa'
 import Image from '../images/boatlogo.png'
+import {Link} from 'react-router-dom'
 
 export default class LoginForm extends Component {
+
+
+
   render() {
     return (
       <div>
@@ -16,22 +20,24 @@ export default class LoginForm extends Component {
                 <div class="mb-4">
                     <input placeholder="Username"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username" type="text"/>
+                        id="username" type="text" onSubmit={(event) => this.props.logIn(event.target.value)}/>
                 </div>
                 <div class="mb-6">
 
                     <input placeholder="Password"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" type="password"/>
+                        id="password" type="password" onSubmit={(event) => this.props.logIn(event.target.value)}/>
 
                 </div>
                 <div class="flex items-center justify-between">
+                    <Link to="/loggedIn">
                     <button
                         class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button">
+                        type="button" onSubmit={() => this.props.submitCallBack()}>
                         Sign In
                     </button>
-                    <a class="inline-block align-baseline font-bold text-sm text-gray-400 " href="#">
+                    </Link>
+                    <a class="inline-block align-baseline font-bold text-sm text-gray-400 " href="/signUp">
                     Register
                     </a>
                 </div>

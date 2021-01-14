@@ -38,6 +38,11 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  def login
+    @curret_user = User.find_by(username: params[:username])
+    render json: @curret_user
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
