@@ -1,5 +1,5 @@
 .big-side-bar{
-    margin-top: -4%;
+    margin-top: -3.5%;
     position: relative;
 }
 
@@ -10,4 +10,12 @@
 
 .friends-div{
     margin-top: 20%;
+}
+
+.welcome-flagship{
+    margin-top: 10%;
+}
+
+.login-logo{
+    margin-left: 28%;
 }
