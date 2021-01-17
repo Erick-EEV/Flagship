@@ -20,20 +20,20 @@ export default class LoginForm extends Component {
                 <div class="mb-4">
                     <input placeholder="Username"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username" type="text" onSubmit={(event) => this.props.logIn(event.target.value)}/>
+                        id="username" type="text" onSubmit={null}/>
                 </div>
                 <div class="mb-6">
 
                     <input placeholder="Password"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" type="password" onSubmit={(event) => this.props.logIn(event.target.value)}/>
+                        id="password" type="password" onSubmit={null}/>
 
                 </div>
                 <div class="flex items-center justify-between">
                     <Link to="/loggedIn">
                     <button
                         class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button" onSubmit={() => this.props.submitCallBack()}>
+                        type="button" onSubmit={null}>
                         Sign In
                     </button>
                     </Link>
