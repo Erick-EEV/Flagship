@@ -1,22 +1,22 @@
 import React, { Component } from "react";
-import Image from '../images/boatlogo.png'
+import Logo from './Logo'
 
 export default class BigSidebar extends Component {
   render() {
     return (
-        <div class="w-64 h-screen bg-gray-800 mt-8 sm:mt-0">
-              <div class="flex items-center justify-center mt-10">
+        <div className="w-64 h-screen mt-8 bg-gray-800 sm:mt-0">
+              <div className="flex items-center justify-center mt-10">
              <div className="friends-div">
                  <h1>Friends</h1>
              </div>
         </div>
-              <nav class="mt-10">
+              <nav className="mt-10">
                 <a
-                  class="flex items-center py-2 px-8 bg-gray-700 text-gray-100 border-r-4 border-gray-100"
+                  className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
                   href="#"
                 >
                   <svg
-                    class="h-5 w-5"
+                    className="w-5 h-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -30,15 +30,15 @@ export default class BigSidebar extends Component {
                     />
                   </svg>
 
-                  <span class="mx-4 font-medium">Dashboard</span>
+                  <span className="mx-4 font-medium">Dashboard</span>
                 </a>
 
                 <a
-                  class="flex items-center mt-5 py-2 px-8 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"
+                  className="flex items-center px-8 py-2 mt-5 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"
                   href="#"
                 >
                   <svg
-                    class="h-5 w-5"
+                    className="w-5 h-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,15 +59,15 @@ export default class BigSidebar extends Component {
                     />
                   </svg>
 
-                  <span class="mx-4 font-medium">Accounts</span>
+                  <span className="mx-4 font-medium">Accounts</span>
                 </a>
 
                 <a
-                  class="flex items-center mt-5 py-2 px-8 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"
+                  className="flex items-center px-8 py-2 mt-5 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"
                   href="#"
                 >
                   <svg
-                    class="h-5 w-5"
+                    className="w-5 h-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -81,15 +81,15 @@ export default class BigSidebar extends Component {
                     />
                   </svg>
 
-                  <span class="mx-4 font-medium">Tickets</span>
+                  <span className="mx-4 font-medium">Tickets</span>
                 </a>
 
                 <a
-                  class="flex items-center mt-5 py-2 px-8 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"
+                  className="flex items-center px-8 py-2 mt-5 text-gray-400 border-r-4 border-gray-800 hover:bg-gray-700 hover:text-gray-100 hover:border-gray-100"
                   href="#"
                 >
                   <svg
-                    class="h-5 w-5"
+                    className="w-5 h-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -110,17 +110,17 @@ export default class BigSidebar extends Component {
                     />
                   </svg>
 
-                  <span class="mx-4 font-medium">Settings</span>
+                  <span className="mx-4 font-medium">Settings</span>
                 </a>
               </nav>
 
-              <div class="absolute bottom-0 my-10">
+              <div className="absolute bottom-0 my-10">
                 <a
-                  class="flex items-center py-2 px-8 text-gray-600 hover:text-gray-500"
+                  className="flex items-center px-8 py-2 text-gray-600 hover:text-gray-500"
                   href="#"
                 >
                   <svg
-                    class="h-5 w-5"
+                    className="w-5 h-5"
                     viewBox="0 0 20 20"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -132,9 +132,10 @@ export default class BigSidebar extends Component {
                       fill="currentColor"
                     />
             </svg>
-                  <span class="mx-4 font-medium">Support</span>
+                  <span className="mx-4 font-medium">Support</span>
                 </a>
               </div>
+              <Logo/>
             </div>
     );
   }

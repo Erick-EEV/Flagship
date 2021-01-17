@@ -5,7 +5,7 @@ export default class LoginPage extends Component {
     render() {
         return (
             <div>
-                <LoginForm />
+                <LoginForm userInputs={this.props.userInputs} getUser={this.props.getUser}/>
             </div>
         )
     }

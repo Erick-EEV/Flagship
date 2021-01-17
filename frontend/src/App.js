@@ -18,20 +18,36 @@ export default class App extends Component {
     password: ""
   }
   
-  // logIn = (username, password) => {
-  //   this.setState({
-  //     username: username,
-  //     password: password
-  //   })
-  //   console.log("Submitted")
-  
-  // }
+  userInputs = (username) => {
+    console.log(username);
+    // this.setState({ ...this.state, [event.target.name]: event.target.value });
+    this.setState({
+      username: username
+    })
+  }
+
+  getUser = (event) => {
+    event.preventDefault()
+    let url = "http://localhost:3000/login"
+    let reqObj = {
+      method: "GET",
+      headers: {"Content-Type":"application/json",
+    Accept:"application/json"},
+    body: JSON.stringify({
+      username: this.state.username
+    })
+    };
+
+    fetch(url, reqObj)
+    .then(resp => resp.json())
+    .then(user => console.log(user))
+  }
 
  
   render() {
     return (
       <div className="App">
-    <Route exact path="/" component={() => <LoginPage />}></Route>
+    <Route exact path="/" component={() => <LoginPage userInputs={this.userInputs} getUser={this.getUser}/>}></Route>
     <Route exact path="/loggedIn" component={SmallSidebar}></Route>
     <Route exact path="/signUp" component={SignUpForm}></Route>
       </div>

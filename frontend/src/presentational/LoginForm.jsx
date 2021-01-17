@@ -16,27 +16,27 @@ export default class LoginForm extends Component {
         <h1 class="text-gray-200 text-center font-extrabold -mt-3 text-3xl">Welcome to Flagship</h1>
         </div>
         <div class="container py-5 max-w-md mx-auto">
-            <form method="" action="">
+            <form method="" action="" onSubmit={event => this.props.getUser(event)}>
                 <div class="mb-4">
                     <input placeholder="Username"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username" type="text" onSubmit={null}/>
+                        id="username" type="text" name="username" onChange={(event) => this.props.userInputs(event.target.value)}/>
                 </div>
                 <div class="mb-6">
 
                     <input placeholder="Password"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" type="password" onSubmit={null}/>
+                        id="password" type="password" name="password"  onChange={null}/>
 
                 </div>
                 <div class="flex items-center justify-between">
-                    <Link to="/loggedIn">
+                    {/* <Link to="/loggedIn"> */}
                     <button
                         class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button" onSubmit={null}>
+                        type="button" >
                         Sign In
                     </button>
-                    </Link>
+                    {/* </Link> */}
                     <a class="inline-block align-baseline font-bold text-sm text-gray-400 " href="/signUp">
                     Register
                     </a>
