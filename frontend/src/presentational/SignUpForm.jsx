@@ -6,6 +6,7 @@ export default class SignUpForm extends Component {
     username: "",
     password: "",
     confirm: "",
+    current_user: []
   };
 
   handleOnSubmit = (event) => {
@@ -24,7 +25,9 @@ export default class SignUpForm extends Component {
     };
     fetch(url, reqObj)
     .then(response => response.json())
-    .then(user => console.log(user))
+    .then(user => this.setState({
+        current_user: user
+    }))
   };
 
   inputs = (e) => {

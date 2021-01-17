@@ -9,4 +9,9 @@ class AuthController < ApplicationController
         render json: user
         byebug
     end
+
+    def login
+        @curret_user = User.find_by(username: params[:username])
+        render json: @curret_user
+    end
 end
