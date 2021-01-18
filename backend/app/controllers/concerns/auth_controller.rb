@@ -11,7 +11,7 @@ class AuthController < ApplicationController
     end
 
     def login
-        @curret_user = User.find_by(username: params[:username], password[:password])
+        @curret_user = User.find_by(username: params[:username])
         render json: @curret_user
     end
 end

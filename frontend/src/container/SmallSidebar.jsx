@@ -4,6 +4,15 @@ import BigSidebar from './BigSidebar'
 
 
 export default class SmallSidebar extends Component {
+
+  componentDidMount(){
+    let url = "http://localhost:3000/servers"
+    fetch(url)
+    .then(response => response.json())
+    .then(serverArr => console.log(serverArr))
+  }
+
+  
     render() {
         return (
             <div>
@@ -18,6 +27,7 @@ export default class SmallSidebar extends Component {
             </a>
             </div>
             <ul>
+            
               <li class="mb-6">
                 <a href="#">
                   <span>
