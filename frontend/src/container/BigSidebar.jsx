@@ -23,7 +23,7 @@ export default class BigSidebar extends Component {
   }
   
   render() {
-    console.log(this.props.firstchatroom);
+    // console.log(this.props.chatrooms);
     return (
         <div className="w-64 h-screen mt-8 bg-gray-800 sm:mt-0">
               <div className="flex items-center justify-center mt-10">
@@ -49,13 +49,17 @@ export default class BigSidebar extends Component {
                   
                   <span className="mx-4 font-medium">{this.state.chatrooms.map((chatroom) => <nav className="mt-10"> <a className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
                   href="#"> <span className="mx-4 font-medium"> <div> {chatroom.title}</div> </span> </a> </nav>)}</span>
-
+                  {/* {console.log(this.props.chatrooms)} */}
+                  {/* the .map below is what i need and it works until i refresh the page */}
+                     {/* <span className="mx-4 font-medium">{this.props.chatrooms.map((chat) => <nav className="mt-10"> <a className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
+                  href="#"> <span className="mx-4 font-medium"> <div> {chat.title}</div> </span> </a> </nav>)}</span> */}
                   
               <div className="absolute bottom-0 my-10">
               
               </div>
 <div className="chatroom-div">
-  <Chatroom videoGameChatroom={this.state.firstChatroom}/>
+{/* {this.props.chatrooms} */}
+  <Chatroom chatrooms={this.props.chatrooms}/>
 </div>
 </div>
             );

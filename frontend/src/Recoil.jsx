@@ -18,6 +18,6 @@ import {
   })
 
   export const loggedInUser = atom({
-     key: "loggedIn_user",
+     key: "loggedInUser",
      default: []
   })

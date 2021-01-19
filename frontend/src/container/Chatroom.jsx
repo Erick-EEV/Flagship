@@ -3,8 +3,8 @@ import Logo from './Logo'
 import RenderMessage from '../presentational/RenderMessage'
 
 export default function Chatroom(props) {
-    let messages = props.videoGameChatroom.messages
-    console.log(messages)
+    // let messages = props.chatrooms
+    console.log(props.chatrooms)
     // messages.map((message) => message)
     return (
         <div>

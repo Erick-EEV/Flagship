@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Image from '../images/boatlogo.png'
 import BigSidebar from './BigSidebar'
-import {loggedIn_user} from '../Recoil'
+import {loggedInUser, usernameState} from '../Recoil'
 
 
 export default class SmallSidebar extends Component {
@@ -20,7 +20,7 @@ export default class SmallSidebar extends Component {
 
   
     render() {
-      
+      // console.log(this.state.server.chatrooms);
         return (
             <div>
 <div class="flex flex-row h-full">
@@ -42,7 +42,7 @@ export default class SmallSidebar extends Component {
             </div>
       </nav>
       <div class="big-side-bar">
-            <BigSidebar firstchatrooms={this.state.server.chatrooms}/>
+            <BigSidebar chatrooms={this.state.server.chatrooms}/>
                   </div>
     </div>
             </div>
