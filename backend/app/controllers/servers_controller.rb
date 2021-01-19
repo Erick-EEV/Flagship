@@ -10,7 +10,7 @@ class ServersController < ApplicationController
 
   # GET /servers/1
   def show
-    render json: @server
+    render json: @server, include: :chatrooms
   end
 
   # POST /servers

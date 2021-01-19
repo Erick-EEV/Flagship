@@ -7,11 +7,10 @@ class AuthController < ApplicationController
     def create
         user = User.create(username: params[:username], password: params[:password])
         render json: user
-        byebug
     end
 
     def login
-        @curret_user = User.find_by(username: params[:username])
-        render json: @curret_user
+        @current_user = User.find_by(username: params[:username])
+        render json: @current_user
     end
 end

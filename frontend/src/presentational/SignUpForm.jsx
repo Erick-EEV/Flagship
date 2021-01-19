@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { atom, useRecoilState } from 'recoil'
+
+
 
 export default class SignUpForm extends Component {
   state = {
@@ -8,6 +11,9 @@ export default class SignUpForm extends Component {
     confirm: "",
     current_user: []
   };
+
+  
+  
 
   handleOnSubmit = (event) => {
     event.preventDefault();
@@ -20,14 +26,16 @@ export default class SignUpForm extends Component {
       },
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password,
+        password: this.state.password
       }),
     };
     fetch(url, reqObj)
     .then(response => response.json())
-    .then(user => this.setState({
-        current_user: user
-    }))
+    .then(user => 
+      this.setState({
+      current_user: user
+    })
+    )
   };
 
   inputs = (e) => {
@@ -35,6 +43,7 @@ export default class SignUpForm extends Component {
   };
 
   render() {
+    console.log(this.state.current_user)
     return (
       <div>
         <div class="bg-grey-lighter min-h-screen flex flex-col">
@@ -69,6 +78,7 @@ export default class SignUpForm extends Component {
                 <Link to="/loggedIn">
                   <button
                     type="submit"
+                    
                     class="w-full text-center py-3 rounded bg-green text-black hover:bg-green-dark focus:outline-none my-1"
                   >
                     Create Account

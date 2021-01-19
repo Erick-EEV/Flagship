@@ -17,11 +17,13 @@ import SignUpForm from './presentational/SignUpForm'
 
 
 export default function App() {
-
   
   
 
+
+  
   return (
+    
     <div>
      <div className="App">
      <RecoilRoot>
@@ -33,40 +35,4 @@ export default function App() {
     </div>
   )
 }
-
-
-
-
-
-  // state = {
-  //   current_user: [],
-  //   username: "",
-  //   loggedIn: false,
-  //   password: ""
-  // }
-  
-  // userInputs = (username) => {
-  //   console.log(username);
-  //   // this.setState({ ...this.state, [event.target.name]: event.target.value });
-  //   this.setState({
-  //     username: username
-  //   })
-  // }
-
-  // getUser = (event) => {
-  //   event.preventDefault()
-  //   let url = "http://localhost:3000/login"
-  //   let reqObj = {
-  //     method: "GET",
-  //     headers: {"Content-Type":"application/json",
-  //   Accept:"application/json"},
-  //   body: JSON.stringify({
-  //     username: this.state.username
-  //   })
-  //   };
-
-  //   fetch(url, reqObj)
-  //   .then(resp => resp.json())
-  //   .then(user => console.log(user))
-  // }
 

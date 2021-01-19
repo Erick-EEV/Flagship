@@ -3,7 +3,7 @@ import { FaBeer } from 'react-icons/fa'
 import Image from '../images/boatlogo.png'
 import {Link} from 'react-router-dom'
 import {useRecoilState, atom} from 'recoil'
-import {usernameState} from '../Recoil'
+import {usernameState, passwordState, loggedInUser} from '../Recoil'
 
 
 export default function LoginForm() {
@@ -14,7 +14,36 @@ export default function LoginForm() {
     setUsername(event.target.value)
   }
   
-  console.log(current_username);
+  const accessPassword = (event) => {
+    setPassword(event.target.value)
+  }
+  
+  const [password, setPassword] = useRecoilState(passwordState)
+  
+  // console.log(current_username);
+  // console.log(loggedIn_user);
+  
+  const [currentUser, setUser] = useRecoilState(loggedInUser)
+  const logIn = (event) => {
+    event.preventDefault();
+    let url = "http://localhost:3000/login";
+    let reqObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ username: current_username}),
+    };
+    // , password: passwordState
+    
+    
+    fetch(url, reqObj)
+    .then(resp => resp.json())
+    .then(user => setUser(user))
+    
+  }
+  
   
   return (
     <div>
@@ -24,7 +53,7 @@ export default function LoginForm() {
         <h1 class="text-gray-200 text-center font-extrabold -mt-3 text-3xl">Welcome to Flagship</h1>
         </div>
         <div class="container py-5 max-w-md mx-auto">
-            <form method="" action="" onSubmit={event => this.props.getUser(event)}>
+            <form method="" action="" onSubmit={event => logIn(event)}>
                 <div class="mb-4">
                     <input placeholder="Username"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -34,14 +63,15 @@ export default function LoginForm() {
 
                     <input placeholder="Password"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" type="password" name="password"  onChange={null}/>
+                        id="password" type="password" name="password" value={password}  onChange={accessPassword}/>
 
                 </div>
                 <div class="flex items-center justify-between">
                     <Link to="/loggedIn">
                     <button
                         class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button" >
+                        type="submit" 
+                        >
                         Sign In
                     </button>
                     </Link>
