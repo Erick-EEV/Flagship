@@ -8,9 +8,9 @@ import {loggedInUser, usernameState} from '../Recoil'
 export default class SmallSidebar extends Component {
 
   state = {
+    currentUser: [],
     server: [],
-    selectedServer: [],
-    erick: []
+    selectedServer: []
   }
   componentDidMount(){
     let url = "http://localhost:3000/servers/1"
@@ -18,11 +18,11 @@ export default class SmallSidebar extends Component {
     .then(response => response.json())
     .then(serverArr => this.setState({server: serverArr}))
     
-    let erickurl = "http://localhost:3000/users/1"
-    fetch(erickurl)
+    let userurl = `http://localhost:3000/users/${this.props.currentuserid}`
+    fetch(userurl)
     .then(resp => resp.json())
-    .then(erick => this.setState({
-      erick: erick
+    .then(user => this.setState({
+      currentUser: user
     }))
     
   }
@@ -30,7 +30,9 @@ export default class SmallSidebar extends Component {
   
   render() {
 
-      // console.log(this.state.erick.members);
+      // console.log(this.props.currentuser);
+      console.log(this.state.currentUser);
+
         return (
             <div>
 <div class="flex flex-row h-full">
@@ -46,7 +48,7 @@ export default class SmallSidebar extends Component {
 
             <div className="profilePic">
             <a href="#">
-              <img src={this.state.erick.image} class="rounded-full w-10 h-10 mb-3 mx-auto"/>
+              <img src={this.state.currentUser.image} class="rounded-full w-10 h-10 mb-3 mx-auto"/>
             </a>
             </div>
             

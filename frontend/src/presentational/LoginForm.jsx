@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaBeer } from 'react-icons/fa'
 import Image from '../images/boatlogo.png'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {useRecoilState, atom} from 'recoil'
 import {usernameState} from '../Recoil'
 
@@ -11,7 +11,7 @@ import {usernameState} from '../Recoil'
 export default function LoginForm(props) {
   
   const [current_username, setUsername] = useRecoilState(usernameState)
-  
+  const history = useHistory()
   const onChange = (event) => {
     setUsername(event.target.value)
   }
@@ -32,16 +32,20 @@ export default function LoginForm(props) {
     
     fetch(url, reqObj)
     .then(resp => resp.json())
-    .then(user => console.log(user))
-    // localStorage.setItem()
+    .then(user => {localStorage.setItem("userId", user.id)
+  // history.push("/loggedIn")
+  props.callBack(user.id)
+}
+  )
     
   }
-  // const [user, setUser] = useState("")
+  // const [user, setUser] = useState({})
   
   
 
   return (
     <div>
+    {/* {console.log(user)} */}
             <div class="max-w-lg max-w-xs bg-blue-900 shadow-2xl rounded-lg mx-auto text-center py-12 mt-4 rounded-xl">
       <img src={Image} width="200" height="100" className="login-logo"/>
       <div className="welcome-flagship">
@@ -62,14 +66,14 @@ export default function LoginForm(props) {
 
                 </div>
                 <div class="flex items-center justify-between">
-                    <Link to="/loggedIn">
+                    {/* <Link to="/loggedIn"> */}
                     <button
                         class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit" 
                         >
                         Sign In
                     </button>
-                    </Link>
+                    {/* </Link> */}
                     <a class="inline-block align-baseline font-bold text-sm text-gray-400 " href="/signUp">
                     Register
                     </a>

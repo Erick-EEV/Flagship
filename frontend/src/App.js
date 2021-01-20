@@ -1,6 +1,6 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
 import './App.css';
-import {Route} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import {
   RecoilRoot,
   atom,
@@ -15,21 +15,36 @@ import {userS} from './Recoil'
 import LoginPage from './container/LoginPage'
 import SmallSidebar from './container/SmallSidebar'
 import SignUpForm from './presentational/SignUpForm'
+import MessageBoard from './presentational/MessageBoard'
 
 
 
 export default function App() {
+  
+  const [currentuserid, setUser] = useState("false")
+  
+  function callBack(user){
+    setUser(user)
+  }
 
-
+  useEffect(() => {
+    setUser(localStorage.getItem("userId"))
+  }, [currentuserid])
+  
+  
   
   return (
     
     <div>
+    {/* {console.log(currentuser)} */}
      <div className="App">
      <RecoilRoot>
-    <Route exact path="/" component={() => <LoginPage />}></Route>
-    <Route exact path="/loggedIn" component={() => <SmallSidebar user={userS}/> }></Route>
+     <Switch>
+    <Route exact path="/">   { currentuserid !== "false" ? <Redirect to="/loggedIn" /> : <LoginPage callBack={callBack} />  }</Route>
+    <Route exact path="/loggedIn" component={() => <SmallSidebar currentuserid={currentuserid}/> }></Route>
+    {/* <Route path="/loggedIn/messages" component={() => <LoginPage />}></Route> */}
     <Route exact path="/signUp" component={SignUpForm}></Route>
+    </Switch>
   </RecoilRoot>
       </div>
     </div>

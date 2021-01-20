@@ -8,7 +8,7 @@
     margin-top: -40%;
 }
 
-.friends-div{
+.chats-div{
     margin-top: 20%;
 }
 
@@ -27,8 +27,13 @@
     z-index: auto;
 }
 
+/* .message-board{
+    margin-left: 20%;
+} */
+
 .messages-div{
     /* position: relative; */
     margin-left:  200%;
+    /* position: absolute; */
     margin-top: 40%;
 }
