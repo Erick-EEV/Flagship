@@ -8,10 +8,9 @@ import {usernameState} from '../Recoil'
 
 
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   
   const [current_username, setUsername] = useRecoilState(usernameState)
-  
   
   const onChange = (event) => {
     setUsername(event.target.value)
@@ -33,12 +32,14 @@ export default function LoginForm() {
     
     fetch(url, reqObj)
     .then(resp => resp.json())
-    .then(user => setUser(user))
+    .then(user => console.log(user))
+    // localStorage.setItem()
     
   }
-  const [user, setUser] = useState([])
+  // const [user, setUser] = useState("")
   
   
+
   return (
     <div>
             <div class="max-w-lg max-w-xs bg-blue-900 shadow-2xl rounded-lg mx-auto text-center py-12 mt-4 rounded-xl">

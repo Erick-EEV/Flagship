@@ -22,10 +22,13 @@
 
 .logo-init-page{
     margin-left: 200%;
-    margin-top: -100%;
+    opacity: 20%;
+    margin-top: -50%;
+    z-index: auto;
 }
 
-.chatroom-div{
-    margin-left: 150%;
-    margin-top: -120%;
+.messages-div{
+    /* position: relative; */
+    margin-left:  200%;
+    margin-top: 40%;
 }

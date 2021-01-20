@@ -4,7 +4,9 @@ import React from 'react'
 export default function RenderMessage(props) {
     return (
         <div>
-            {props.messages?.map((message) => <div><h2>{message.text}</h2></div> )}
+        <ul>
+        <li>{props.messages?.map((message) => <h2>{message.text}</h2> )}</li>
+            </ul>
         </div>
     )
 }

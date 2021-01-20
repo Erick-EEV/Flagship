@@ -4,6 +4,7 @@ import BigSidebar from './BigSidebar'
 import {loggedInUser, usernameState} from '../Recoil'
 
 
+
 export default class SmallSidebar extends Component {
 
   state = {
@@ -11,23 +12,24 @@ export default class SmallSidebar extends Component {
     selectedServer: [],
     erick: []
   }
-
   componentDidMount(){
     let url = "http://localhost:3000/servers/1"
     fetch(url)
     .then(response => response.json())
     .then(serverArr => this.setState({server: serverArr}))
-
+    
     let erickurl = "http://localhost:3000/users/1"
     fetch(erickurl)
     .then(resp => resp.json())
     .then(erick => this.setState({
       erick: erick
     }))
+    
   }
-
   
-    render() {
+  
+  render() {
+
       // console.log(this.state.erick.members);
         return (
             <div>
