@@ -11,13 +11,8 @@ import {
     key: "current_username",
     default: ""
   })
- 
-  export const passwordState = atom({
-    key: "current_password",
-    default: ""
-  })
 
-  export const loggedInUser = atom({
-     key: "loggedInUser",
-     default: []
+  export const userS = atom({
+    key: "userS",
+    default: []
   })

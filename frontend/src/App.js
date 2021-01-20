@@ -8,6 +8,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
+import {userS} from './Recoil'
 
 
 
@@ -18,9 +19,6 @@ import SignUpForm from './presentational/SignUpForm'
 
 
 export default function App() {
-  
-
-
 
   
   return (
@@ -29,7 +27,7 @@ export default function App() {
      <div className="App">
      <RecoilRoot>
     <Route exact path="/" component={() => <LoginPage />}></Route>
-    <Route exact path="/loggedIn" component={SmallSidebar}></Route>
+    <Route exact path="/loggedIn" component={() => <SmallSidebar user={userS}/> }></Route>
     <Route exact path="/signUp" component={SignUpForm}></Route>
   </RecoilRoot>
       </div>

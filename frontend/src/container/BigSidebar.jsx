@@ -4,26 +4,24 @@ import Chatroom from './Chatroom'
 export default class BigSidebar extends Component {
 
   state = {
-    chatrooms: [],
-    firstChatroom: []
+    selected_chatroom: [],
   }
 
-  componentDidMount(){
-    let url = "http://localhost:3000/chatrooms"
-    fetch(url)
-    .then(resp => resp.json())
-    .then(chatroomsArr => this.setState({
-      chatrooms: chatroomsArr
-    }))
+  // componentDidMount(){
+  //   let url = "http://localhost:3000/chatrooms"
+  //   fetch(url)
+  //   .then(resp => resp.json())
+  //   .then(chatroomsArr => this.setState({
+  //     chatrooms: chatroomsArr
+  //   }))
 
-    let videogameurl = "http://localhost:3000/chatrooms/1"
-    fetch(videogameurl)
-    .then(resp => resp.json())
-    .then( firstchat => this.setState({firstChatroom: firstchat}))
-  }
+  //   let videogameurl = "http://localhost:3000/chatrooms/1"
+  //   fetch(videogameurl)
+  //   .then(resp => resp.json())
+  //   .then( firstchat => this.setState({firstChatroom: firstchat}))
+  // }
   
   render() {
-    // console.log(this.props.chatrooms);
     return (
         <div className="w-64 h-screen mt-8 bg-gray-800 sm:mt-0">
               <div className="flex items-center justify-center mt-10">
@@ -46,19 +44,13 @@ export default class BigSidebar extends Component {
                       stroke-linejoin="round"
                     />
                   </svg> */}
-                  
-                  <span className="mx-4 font-medium">{this.state.chatrooms.map((chatroom) => <nav className="mt-10"> <a className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
-                  href="#"> <span className="mx-4 font-medium"> <div> {chatroom.title}</div> </span> </a> </nav>)}</span>
-                  {/* {console.log(this.props.chatrooms)} */}
-                  {/* the .map below is what i need and it works until i refresh the page */}
-                     {/* <span className="mx-4 font-medium">{this.props.chatrooms.map((chat) => <nav className="mt-10"> <a className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
-                  href="#"> <span className="mx-4 font-medium"> <div> {chat.title}</div> </span> </a> </nav>)}</span> */}
+                    <span className="mx-4 font-medium">{this.props.chatrooms?.map((chat) => <nav className="mt-10"> <a className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
+                  href="#"> <span className="mx-4 font-medium"> <div> {chat.title}</div> </span> </a> </nav>)}</span>
                   
               <div className="absolute bottom-0 my-10">
               
               </div>
 <div className="chatroom-div">
-{/* {this.props.chatrooms} */}
   <Chatroom chatrooms={this.props.chatrooms}/>
 </div>
 </div>

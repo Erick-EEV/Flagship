@@ -3,14 +3,12 @@ import Logo from './Logo'
 import RenderMessage from '../presentational/RenderMessage'
 
 export default function Chatroom(props) {
-    // let messages = props.chatrooms
-    console.log(props.chatrooms)
-    // messages.map((message) => message)
+    // console.log(props.chatrooms)
     return (
         <div>
             <div>
+        {props.chatrooms?.map((chat) => <RenderMessage messages={chat.messages} /> )}
                 <Logo/>
-            {/* {props.videoGameChatroom.messages.map((message) => <RenderMessage message={message}/> )} */}
             </div>
   	</div>
     )

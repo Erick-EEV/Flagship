@@ -1,29 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaBeer } from 'react-icons/fa'
 import Image from '../images/boatlogo.png'
 import {Link} from 'react-router-dom'
 import {useRecoilState, atom} from 'recoil'
-import {usernameState, passwordState, loggedInUser} from '../Recoil'
+import {usernameState} from '../Recoil'
+
+
 
 
 export default function LoginForm() {
   
   const [current_username, setUsername] = useRecoilState(usernameState)
   
+  
   const onChange = (event) => {
     setUsername(event.target.value)
   }
   
-  const accessPassword = (event) => {
-    setPassword(event.target.value)
-  }
-  
-  const [password, setPassword] = useRecoilState(passwordState)
-  
-  // console.log(current_username);
-  // console.log(loggedIn_user);
-  
-  const [currentUser, setUser] = useRecoilState(loggedInUser)
   const logIn = (event) => {
     event.preventDefault();
     let url = "http://localhost:3000/login";
@@ -35,7 +28,7 @@ export default function LoginForm() {
       },
       body: JSON.stringify({ username: current_username}),
     };
-    // , password: passwordState
+    
     
     
     fetch(url, reqObj)
@@ -43,6 +36,7 @@ export default function LoginForm() {
     .then(user => setUser(user))
     
   }
+  const [user, setUser] = useState([])
   
   
   return (
@@ -63,7 +57,7 @@ export default function LoginForm() {
 
                     <input placeholder="Password"
                         class="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" type="password" name="password" value={password}  onChange={accessPassword}/>
+                        id="password" type="password" name="password" value={null}  onChange={null}/>
 
                 </div>
                 <div class="flex items-center justify-between">

@@ -9,7 +9,7 @@ class ServersController < ApplicationController
 
   # GET /servers/1
   def show
-    render json: @server, include: :chatrooms
+    render json: @server, include: [:chatrooms => {:include => :messages}]
   end
 
   # POST /servers
