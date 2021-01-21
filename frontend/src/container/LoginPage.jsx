@@ -7,7 +7,7 @@ export default class LoginPage extends Component {
         
         return (
             <div>
-                <LoginForm />
+                <LoginForm callBack={this.props.callBack}/>
             </div>
         )
     }
