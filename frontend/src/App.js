@@ -47,14 +47,13 @@ export default function App() {
   
   return (
     
-    <div>
+    <div class="bg-gray-600">
     {/* {console.log(currentuser)} */}
      <div className="App">
      <RecoilRoot>
      <Switch>
     <Route exact path="/">   { currentuserid !== "false" ? <Redirect to="/loggedIn" /> : <LoginPage callBack={callBack} />  }</Route>
-    <Route exact path="/loggedIn" >  { currentuserid !== `${currentuserid}` ? <Redirect to="/" /> : <SmallSidebar currentuserid={currentuserid}/>}  </Route>
-    {/* <Route path="/loggedIn/messages" component={() => <LoginPage />}></Route> */}
+    <Route exact path="/loggedIn" >  { currentuserid === "false" ? <Redirect to="/" /> : <SmallSidebar currentuserid={currentuserid}/>}  </Route>
     <Route exact path="/signUp" component={SignUpForm}></Route>
     </Switch>
   </RecoilRoot>

@@ -1,30 +1,59 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Chatroom(props) {
+export default class Chatroom extends Component {
 
-    return (
-        <div class="z-0 ml-10">
+    state = {
+        selectedChatroom: [],
+        messages: []
+    }
+
+    componentDidUpdate(prevProps){
+        // console.log(prevProps, this.props);
+        if (prevProps.selectedChatroomId !== this.props.selectedChatroomId) {
+          let url = `http://localhost:3000/chatrooms/${this.props.selectedChatroomId}`;
+    
+          fetch(url)
+            .then((resp) => resp.json())
+            .then((chatroom) => {
+              this.setState({
+                messages: chatroom.messages,
+              });
+              console.log("fetch");
+            });
+        }
+    }
+    render() {
+        // console.log(this.state.messages);
+        return (
+            <div class="z-0 ml-10 chatroom-div">
             <div>
-                
+                {/* Message */}
                 <div className="messages-div">
-                {props.messages?.map((x) => <div><h2>{x.text}</h2></div>)}
+                {this.state.messages?.map((message) => <div>
+                {console.log(message)}
+                <div>
+                <h6>{message.owner? message.owner : null}</h6>
                 </div>
-                {/* message form */}
+                <h2>{message.text? message.text : null}</h2>
+                </div>)}
+                </div>
+                {/* New Message form */}
                 <div>
                     <form>
                         <div>
                             <input placeholder="message" id="message" type="message">
                                 
                             </input>
-                            <div >
+                        </div>
+                            <div className="submit-button">
                                 <button placeholder="Submit" class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                     Submit
                                 </button>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
   	</div>
-    )
+        )
+    }
 }

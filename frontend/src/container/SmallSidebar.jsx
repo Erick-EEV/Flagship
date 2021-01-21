@@ -5,7 +5,7 @@ import BigSidebar from "./BigSidebar";
 export default class SmallSidebar extends Component {
   state = {
     currentUser: [],
-    selectedServer: [],
+    selectedServerId: 0,
   };
   componentDidMount() {
     let userurl = `http://localhost:3000/users/${this.props.currentuserid}`;
@@ -26,19 +26,21 @@ export default class SmallSidebar extends Component {
     });
   };
 
-  render() {
-    {
-      this.state.currentUser.members?.map((serverUserIsMemberOf) =>
-        console.log(serverUserIsMemberOf.server.chatrooms)
-      );
-    }
+  selectServer = (event) => {
+    event.preventDefault()
+    this.setState({
+      selectedServerId: event.target.value
+    })
 
+  }
+
+  render() {
     return (
       <div>
         <div class="flex flex-row h-full">
           <nav class="bg-gray-900 w-20  justify-between flex flex-col ">
             <div class="mt-10">
-              {/* server-circles */}
+              {/* Home-Button */}
               <div className="home-img">
                 <a href="#">
                   <img
@@ -47,7 +49,7 @@ export default class SmallSidebar extends Component {
                   />
                 </a>
               </div>
-
+              {/* Profile Pic */}
               <div className="profilePic">
                 <a href="#">
                   <img
@@ -56,17 +58,19 @@ export default class SmallSidebar extends Component {
                   />
                 </a>
               </div>
-
+              {/* Server Names */}
               <div class="bg-blue-800 text-white">
                 {this.state.currentUser.members?.map((serverUserIsMemberOf) => (
-                  <div class="mt-5">
+                  <div class="mt-5" >
                     <ul>
-                      <li>{serverUserIsMemberOf.server.name}</li>
+                      <li onClick={(event) => this.selectServer(event)} value={serverUserIsMemberOf.server.id}>{serverUserIsMemberOf.server.name}</li>
                     </ul>
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* LogOut Button */}
             <div className="mb-20">
               <button
                 onClick={(event) => this.logOut(event)}
@@ -77,10 +81,12 @@ export default class SmallSidebar extends Component {
               </button>
             </div>
           </nav>
+          {/* BigSidebar/Chatrooms */}
           <div class="big-side-bar">
-            {this.state.currentUser.members?.map((serverUserIsMemberOf) => (
-              <BigSidebar chatrooms={serverUserIsMemberOf.server.chatrooms} />
-            ))}
+            {/* {this.state.currentUser.members?.map((serverUserIsMemberOf) => (
+              <BigSidebar chatrooms={serverUserIsMemberOf.server.chatrooms} serverId={this.state.selectedServerId}/>
+            ))} */}
+            <BigSidebar memebers={this.state.currentUser.memebers} serverId={this.state.selectedServerId}/>
           </div>
         </div>
       </div>
