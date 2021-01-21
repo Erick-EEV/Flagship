@@ -27,13 +27,9 @@
     z-index: auto;
 }
 
-/* .message-board{
-    margin-left: 20%;
-} */
-
 .messages-div{
     /* position: relative; */
-    margin-left:  200%;
+    /* margin-left:  200%; */
     /* position: absolute; */
     margin-top: 40%;
 }

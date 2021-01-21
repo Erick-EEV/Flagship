@@ -1,18 +1,13 @@
 import React from 'react'
-import RenderMessage from '../presentational/RenderMessage'
-import {userS, usernameState } from '../Recoil'
-import {useRecoilValue} from 'recoil'
 
 export default function Chatroom(props) {
-    // const x = useRecoilValue(usernameState)
-    // console.log(x);
-    console.log(props.chatrooms)
+
     return (
         <div class="z-0 ml-10">
             <div>
                 
                 <div className="messages-div">
-        {props.chatrooms?.map((chat) => <RenderMessage messages={chat.messages} /> )}
+                {props.messages?.map((x) => <div><h2>{x.text}</h2></div>)}
                 </div>
                 {/* message form */}
                 <div>

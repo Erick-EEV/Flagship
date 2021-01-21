@@ -8,14 +8,12 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
-import {userS} from './Recoil'
 
 
 
 import LoginPage from './container/LoginPage'
 import SmallSidebar from './container/SmallSidebar'
 import SignUpForm from './presentational/SignUpForm'
-import MessageBoard from './presentational/MessageBoard'
 
 
 
@@ -41,7 +39,7 @@ export default function App() {
      <RecoilRoot>
      <Switch>
     <Route exact path="/">   { currentuserid !== "false" ? <Redirect to="/loggedIn" /> : <LoginPage callBack={callBack} />  }</Route>
-    <Route exact path="/loggedIn" component={() => <SmallSidebar currentuserid={currentuserid}/> }></Route>
+    <Route exact path="/loggedIn" >  { currentuserid !== `${currentuserid}` ? <Redirect to="/" /> : <SmallSidebar currentuserid={currentuserid}/>}  </Route>
     {/* <Route path="/loggedIn/messages" component={() => <LoginPage />}></Route> */}
     <Route exact path="/signUp" component={SignUpForm}></Route>
     </Switch>
