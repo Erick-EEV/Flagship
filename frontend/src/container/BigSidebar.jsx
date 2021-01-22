@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import Chatroom from "./Chatroom";
 import Logo from "./Logo";
-import Search from '../presentational/Search'
+import Search from "../presentational/Search";
 
 export default class BigSidebar extends Component {
   state = {
     selectedChatrooms: [],
     selectedChatroomId: 0,
-    searchResult: ""
+    searchResult: "",
+    result: {},
   };
 
   componentDidUpdate(prevProps) {
@@ -27,50 +28,79 @@ export default class BigSidebar extends Component {
   }
 
   selectChatroom = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     this.setState({
-      selectedChatroomId: event.target.value
-    })
+      selectedChatroomId: event.target.value,
+    });
     // console.log("Clicked");
     // console.log(event.target.value);
-  }
+  };
 
   onChange = (event) => {
-    event.preventDefault()
-    this.setState({searchResult: event.target.value});
-    // console.log(event.target.value);
-  }
+    event.preventDefault();
+    this.setState({ searchResult: event.target.value });
+    console.log(event.target.value);
+  };
 
   search = (event) => {
-    event.preventDefault()
-    let searchResult = this.state.searchResult
-    let url = ""
-  }
+    event.preventDefault();
+    let searchResult = this.state.searchResult;
+    let url = "http://localhost:3000/search";
+    let reqObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ name: searchResult }),
+    };
+
+    fetch(url, reqObj)
+      .then((resp) => resp.json())
+      .then((server) => this.setState({ result: server }));
+  };
 
   render() {
     return (
       <div className="w-64 h-screen mt-8 bg-gray-800 sm:mt-0">
         <div className="flex items-center justify-center mt-10">
-        {/* BidSidebar properties */}
+          {/* BidSidebar properties */}
 
-        <div class="pt-2 relative mx-auto text-gray-600 searchbar">
-        <form onSearch={(event) => this.searchResult(event)}>
-        <input onChange={(event) => this.onChange(event)} value={this.state.searchResult} class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-          type="search" name="search" placeholder="Search"/>
-        <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
-          <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-             version="1.1" id="Capa_1" x="0px" y="0px"
-            viewBox="0 0 56.966 56.966" 
-            width="512px" height="512px">
-            <path
-              d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-          </svg>
-        </button>
-        </form>
-      </div>
+          <div class="pt-2 relative mx-auto text-gray-600 searchbar">
+            <form onSubmit={(event) => this.search(event)}>
+              <div>
+                <input
+                  onChange={(event) => this.onChange(event)}
+                  value={this.state.searchResult}
+                  class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                  type="search"
+                  name="search"
+                  placeholder="Search"
+                />
+              </div>
+              <div>
+                <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+                  <svg
+                    class="text-gray-600 h-4 w-4 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    version="1.1"
+                    id="Capa_1"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 56.966 56.966"
+                    width="512px"
+                    height="512px"
+                  >
+                    <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
           {/* Search box */}
-          <div className="search-results">
-            <Search />
+          <div className="bg-white">
+            {/* {this.state.result?.name} */}
+            <Search result={this.state.result} />
           </div>
           {/* Search Results */}
           <div className="chats-div">
@@ -89,10 +119,15 @@ export default class BigSidebar extends Component {
                 {" "}
                 <span className="mx-4 font-medium">
                   {" "}
-                  <div className="chatroom-title" > 
-                  <ul><li onClick={(event) => this.selectChatroom(event)} value={chat.id}>
-                  {chat.title} 
-                  </li></ul>
+                  <div className="chatroom-title">
+                    <ul>
+                      <li
+                        onClick={(event) => this.selectChatroom(event)}
+                        value={chat.id}
+                      >
+                        {chat.title}
+                      </li>
+                    </ul>
                   </div>{" "}
                 </span>{" "}
               </a>{" "}
@@ -103,13 +138,13 @@ export default class BigSidebar extends Component {
         {/* Logo Image Below*/}
         <div className="logo">
           <Logo />
-        <div className="mb-10 chatroom-div">
-          {/* Chatroom Messages Below */}
-          {/* {this.state.selectedChatrooms?.map((chatroom) => (
+          <div className="mb-10 chatroom-div">
+            {/* Chatroom Messages Below */}
+            {/* {this.state.selectedChatrooms?.map((chatroom) => (
             <Chatroom messages={chatroom.messages}  selectedChatroomId={this.state.selectedChatroomId}/>
           ))} */}
-          <Chatroom selectedChatroomId={this.state.selectedChatroomId}/>
-        </div>
+            <Chatroom selectedChatroomId={this.state.selectedChatroomId} />
+          </div>
         </div>
       </div>
     );

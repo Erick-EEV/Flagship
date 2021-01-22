@@ -13,4 +13,12 @@ class AuthController < ApplicationController
         @current_user = User.find_by(username: params[:username])
         render json: @current_user, include: :members
     end
+
+    def search
+        @server = Server.find_by(name: params[:name])
+        render json: @server, include: :members
+                                # include: [:members => {:include => {:server => {:include => {:chatrooms => {:include => :messages}}}}}]
+        # [:chatrooms => {:include => :messages}]
+        
+    end
 end
