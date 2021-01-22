@@ -18,7 +18,11 @@ class AuthController < ApplicationController
         @server = Server.find_by(name: params[:name])
         render json: @server, include: :members
                                 # include: [:members => {:include => {:server => {:include => {:chatrooms => {:include => :messages}}}}}]
-        # [:chatrooms => {:include => :messages}]
-        
+        # [:chatrooms => {:include => :messages}
+    end
+
+    def addserver
+        @member = Member.create(server_id: params[:server_id], user_id: params[:user_id], admin: [:admin])
+        render json: @member
     end
 end

@@ -15,13 +15,8 @@ import SignUpForm from "./presentational/SignUpForm";
 import Home from "./container/Home";
 
 export default function App() {
-  // Some how move messages to be layered over the background logo to the right of the screen
-  //Create an onClick event for each server name and when clicked places that server into selected_server state
-  //Then take that selected server and pass it as a prop to BigSidebar and render only that servers chatrooms
-  //Then pass that chatrooms.messages as props to Chatroom to be rendered
-  //Create Search bar above Chatrooms that finds a SERVER by NAME
   //Returns "No Server With That Name Found" if not found
-  // Add Server/Request to be in Server
+  // Add Request to be in Server
   //Admin will get notification to add user if yes Create member relationship if no null
   //Admin can Delete a user's member relationship "Remove User"
   //Create, POST request

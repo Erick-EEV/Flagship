@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post '/signUp', to: 'auth#create'
   post '/login', to: 'auth#login'
   post '/search', to: 'auth#search'
+  post '/addserver', to: 'auth#addserver'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

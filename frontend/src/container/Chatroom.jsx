@@ -2,27 +2,18 @@ import React, { Component } from "react";
 import Logo from "./Logo";
 
 export default class Chatroom extends Component {
-  state = {
-
-  };
-
   componentDidUpdate(prevProps) {
-    // console.log(prevProps, this.props);
     if (prevProps.selectedChatroomId !== this.props.selectedChatroomId) {
       let url = `http://localhost:3000/chatrooms/${this.props.selectedChatroomId}`;
 
       fetch(url)
         .then((resp) => resp.json())
         .then((chatroom) => {
-          this.setState({
-            messages: chatroom.messages,
-          });
-          console.log("fetch");
+            this.props.setMessages(chatroom.messages)
         });
     }
   }
   render() {
-    // console.log(this.state.messages);
     return (
       <div class="z-0 ml-10 chatroom-div">
             <div className="logo">
@@ -31,9 +22,8 @@ export default class Chatroom extends Component {
         <div>
           {/* Message */}
           <div className="messages-div">
-            {this.state.messages?.map((message) => (
+            {this.props.messages?.map((message) => (
               <div>
-                {console.log(message)}
                 <div>
                   <h6>{message.owner ? message.owner : null}</h6>
                 </div>

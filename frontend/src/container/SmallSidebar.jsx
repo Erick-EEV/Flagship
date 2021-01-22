@@ -15,7 +15,7 @@ export default class SmallSidebar extends Component {
           <div class="mt-10">
             {/* Home-Button */}
             <div className="home-img">
-              <a href="#">
+              <a href="http://localhost:3001/loggedIn">
                 <img src={Image} class="rounded-full w-10 h-10 mb-3 mx-auto" />
               </a>
             </div>
@@ -46,7 +46,7 @@ export default class SmallSidebar extends Component {
           </div>
 
           {/* LogOut Button */}
-          <div className="mb-20">
+          <div className="mb-5">
             <button
               onClick={(event) => this.logOut(event)}
               type="click"

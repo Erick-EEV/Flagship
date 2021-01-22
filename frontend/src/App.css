@@ -34,10 +34,17 @@
 }
 
 .searchbar{
+    margin-top: -10%;
     position: absolute;
 }
 .submit-button{
     position: relative;
-    left: 170px;
+    left: 20%;
     bottom: 30px;
+}
+
+.add-button{
+    position: fixed;
+    margin-left: 10%;
+    margin-top: -3%;
 }

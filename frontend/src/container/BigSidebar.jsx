@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Chatroom from "./Chatroom";
-
 import Search from "../presentational/Search";
 
 export default class BigSidebar extends Component {
@@ -23,10 +21,10 @@ export default class BigSidebar extends Component {
     }
   }
 
-  onChange = (event) => {
+  handleOnChange = (event) => {
     event.preventDefault();
     this.setState({ searchResult: event.target.value });
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   search = (event) => {
@@ -58,12 +56,12 @@ export default class BigSidebar extends Component {
             <form onSubmit={(event) => this.search(event)}>
               <div>
                 <input
-                  onChange={(event) => this.onChange(event)}
+                  onChange={(event) => this.handleOnChange(event)}
                   value={this.state.searchResult}
                   class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                   type="search"
                   name="search"
-                  placeholder="Search"
+                  placeholder="Search Servers"
                 />
               </div>
               <div>
@@ -88,7 +86,7 @@ export default class BigSidebar extends Component {
           {/* Search box */}
           <div className="bg-white">
             {/* {this.state.result?.name} */}
-            <Search result={this.state.result} />
+            <Search result={this.state.result} addServerToState={this.props.addServerToState}/>
           </div>
           {/* Search Results */}
           <div className="chats-div">
@@ -119,16 +117,6 @@ export default class BigSidebar extends Component {
             </nav>
           ))}
         </span>
-
-        {/* Logo Image Below*/}
-  
-          <div className="mb-10 chatroom-div">
-            {/* Chatroom Messages Below */}
-            {/* {this.state.selectedChatrooms?.map((chatroom) => (
-            <Chatroom messages={chatroom.messages}  selectedChatroomId={this.state.selectedChatroomId}/>
-          ))} */}
-            {/* <Chatroom selectedChatroomId={this.state.selectedChatroomId} /> */}
-        </div>
       </div>
     );
   }
