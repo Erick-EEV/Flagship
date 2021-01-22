@@ -28,6 +28,7 @@ export default function LoginForm(props) {
       .then((resp) => resp.json())
       .then((user) => {
         localStorage.setItem("userId", user.id);
+        localStorage.setItem("username", user.username);
         props.callBack(user.id);
       });
   };

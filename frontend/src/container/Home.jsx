@@ -56,12 +56,18 @@ export default class Home extends Component {
     })
   }
 
+  updateMessages = (message) => {
+    this.setState({
+      messages: [...this.state.messages, message]
+    })
+  }
+
   render() {
     return (
       <div className="flex flex-row h-screen">
         <SmallSidebar currentUser={this.state.currentUser} selectServer={this.selectServer} history={this.props.history} loadLogOut={this.props.loadLogOut}/>
         <BigSidebar selectedChatrooms={this.state.selectedChatrooms} serverId={this.state.selectedServerId} selectChatroom={this.selectChatroom} loadSelectChatroom={this.loadSelectChatroom} addServerToState={this.addServerToState}/>
-        <div className="flex-auto"> <Chatroom selectedChatroomId={this.state.selectedChatroomId} setMessages={this.setMessages} messages={this.state.messages}  /> </div>
+        <div className="flex-auto"> <Chatroom updateMessages={this.updateMessages} selectedChatroomId={this.state.selectedChatroomId} setMessages={this.setMessages} messages={this.state.messages}  /> </div>
       </div>
     );
   }
