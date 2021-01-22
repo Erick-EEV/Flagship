@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import Chatroom from "./Chatroom";
-import Logo from "./Logo";
+
 import Search from "../presentational/Search";
 
 export default class BigSidebar extends Component {
   state = {
-    selectedChatrooms: [],
-    selectedChatroomId: 0,
     searchResult: "",
-    result: {},
+    result: {}
   };
 
   componentDidUpdate(prevProps) {
@@ -19,22 +17,11 @@ export default class BigSidebar extends Component {
       fetch(url)
         .then((resp) => resp.json())
         .then((server) => {
-          this.setState({
-            selectedChatrooms: server.chatrooms,
-          });
+          this.props.loadSelectChatroom(server.chatrooms)
           // console.log("fetch");
         });
     }
   }
-
-  selectChatroom = (event) => {
-    event.preventDefault();
-    this.setState({
-      selectedChatroomId: event.target.value,
-    });
-    // console.log("Clicked");
-    // console.log(event.target.value);
-  };
 
   onChange = (event) => {
     event.preventDefault();
@@ -62,6 +49,7 @@ export default class BigSidebar extends Component {
 
   render() {
     return (
+      
       <div className="w-64 h-screen mt-8 bg-gray-800 sm:mt-0">
         <div className="flex items-center justify-center mt-10">
           {/* BidSidebar properties */}
@@ -109,42 +97,37 @@ export default class BigSidebar extends Component {
           {/* Chatroom Div Above and Chatroom Titles Below */}
         </div>
         <span className="mx-4 font-medium">
-          {this.state.selectedChatrooms?.map((chat) => (
+          {this.props.selectedChatrooms?.map((chat) => (
             <nav className="mt-10">
-              {" "}
               <a
                 className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
                 href="#"
               >
-                {" "}
                 <span className="mx-4 font-medium">
-                  {" "}
                   <div className="chatroom-title">
                     <ul>
                       <li
-                        onClick={(event) => this.selectChatroom(event)}
+                        onClick={(event) => this.props.selectChatroom(event)}
                         value={chat.id}
                       >
                         {chat.title}
                       </li>
                     </ul>
-                  </div>{" "}
-                </span>{" "}
-              </a>{" "}
+                  </div>
+                </span>
+              </a>
             </nav>
           ))}
         </span>
 
         {/* Logo Image Below*/}
-        <div className="logo">
-          <Logo />
+  
           <div className="mb-10 chatroom-div">
             {/* Chatroom Messages Below */}
             {/* {this.state.selectedChatrooms?.map((chatroom) => (
             <Chatroom messages={chatroom.messages}  selectedChatroomId={this.state.selectedChatroomId}/>
           ))} */}
-            <Chatroom selectedChatroomId={this.state.selectedChatroomId} />
-          </div>
+            {/* <Chatroom selectedChatroomId={this.state.selectedChatroomId} /> */}
         </div>
       </div>
     );

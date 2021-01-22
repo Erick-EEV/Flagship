@@ -21,16 +21,16 @@
 }
 
 .logo-init-page{
-    margin-left: 200%;
+    /* margin-left: 200%; */
     opacity: 20%;
-    margin-top: -50%;
-    z-index: auto;
+    /* margin-top: -50%; */
+    /* z-index: auto; */
 }
 
 .chatroom-div{
-    left:  110px;
+    /* left:  110px; */
     position: relative;
-    top: -10px;
+    /* top: -10px; */
 }
 
 .searchbar{
