@@ -149,7 +149,7 @@ export default class SmallSidebar extends Component {
           </div>
           {/* Create Server Button */}
           {/* When i Comment out this form my logo and profile pic load but they wont with the form uncommented */}
-          {/* <div className="create-server"> 
+          <div className="create-server"> 
           <form onSubmit={(event) => this.createServer(event)}>
           <div>
                 <input
@@ -168,7 +168,7 @@ export default class SmallSidebar extends Component {
             </button>
           </div>
           </form>
-          </div> */}
+          </div>
           {/* LogOut Button */}
           <div className="mb-5">
             <button

@@ -19,7 +19,7 @@ export default function App() {
   // Add Request to be in Server
   //Admin will get notification to add user if yes Create member relationship if no null
   //Admin can Delete a user's member relationship "Remove User"
-  //Create, POST request
+
   //  Update, PATCH request
   // Delete DELETE request
   // Messages Only be able to delete my messages unless admin, Admin can delete all messages
@@ -56,7 +56,14 @@ export default function App() {
             <Route exact path="/loggedIn">
               {currentuserid === "false" ? <Redirect to="/" /> : <Home currentuserid={currentuserid} loadLogOut={loadLogOut}/> }
             </Route>
-            <Route exact path="/signUp" component={SignUpForm}></Route>
+            <Route exact path="/signUp">
+              {currentuserid !== "false" ? (
+                <Redirect to="/loggedIn" />
+              ) : (
+                <SignUpForm callBack={callBack} />
+              )}
+            </Route>
+            {/* <Route exact path="/signUp" component={SignUpForm}></Route> */}
           </Switch>
         </RecoilRoot>
       </div>

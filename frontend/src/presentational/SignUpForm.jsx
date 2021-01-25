@@ -9,7 +9,7 @@ export default class SignUpForm extends Component {
     username: "",
     password: "",
     confirm: "",
-    current_user: []
+    current_user: {}
   };
 
   
@@ -31,15 +31,17 @@ export default class SignUpForm extends Component {
     };
     fetch(url, reqObj)
     .then(response => response.json())
-    .then(user => 
-      this.setState({
-      current_user: user
-    })
-    )
+    .then(user => this.props.callBack(user))
+    // (user => 
+    //   this.setState({
+    //   current_user: user
+    // })
+    // )
   };
 
   inputs = (e) => {
     this.setState({ ...this.state, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
 
   render() {
@@ -75,7 +77,7 @@ export default class SignUpForm extends Component {
                   placeholder="Confirm Password"
                   onChange={(event) => this.inputs(event)}
                 />
-                <Link to="/loggedIn">
+                {/* <Link to="/loggedIn"> */}
                   <button
                     type="submit"
                     
@@ -83,7 +85,7 @@ export default class SignUpForm extends Component {
                   >
                     Create Account
                   </button>
-                </Link>
+                {/* </Link> */}
               </form>
               <div class="text-center text-sm text-grey-dark mt-4">
                 By signing up, you agree to the
