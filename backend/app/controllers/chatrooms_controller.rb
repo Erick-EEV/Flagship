@@ -18,7 +18,7 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.new(chatroom_params)
 
     if @chatroom.save
-      render json: @chatroom, status: :created, location: @chatroom
+      render json: @chatroom, include: :messages
     else
       render json: @chatroom.errors, status: :unprocessable_entity
     end

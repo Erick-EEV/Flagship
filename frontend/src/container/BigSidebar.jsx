@@ -54,8 +54,24 @@ export default class BigSidebar extends Component {
     // console.log(event.target.value);
   }
 
-  createChatroom = () => {
-    
+  createChatroom = (event) => {
+    event.preventDefault();
+    let url = "http://localhost:3000/chatrooms"
+    let newChatroom = this.state.chatroomTitle
+    let serverId = this.props.serverId
+
+    let reqObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ title: newChatroom, server_id: serverId }),
+    };
+
+    fetch(url, reqObj)
+    .then(resp => resp.json())
+    .then(newChatroom => this.props.updateChat(newChatroom))
   }
 
   render() {
