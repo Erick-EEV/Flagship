@@ -8,6 +8,7 @@ export default class SmallSidebar extends Component {
   state = {
     newServer: "",
     newServerId: 0,
+    memberRelToDelete: 0
   }
   
   logOut = (event) => {
@@ -63,6 +64,43 @@ export default class SmallSidebar extends Component {
     
     
   }
+
+  deleteServer = (event) => {
+    event.preventDefault();
+    let serverId = event.target.value
+    let userId = localStorage.getItem("userId")
+    let url = `http://localhost:3000/getserver`
+
+    let reqObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({user_id: userId, server_id: serverId})
+    };
+
+    fetch(url, reqObj)
+    .then(resp => resp.json())
+    .then( memberRelationship => this.setState({
+      memberRelToDelete: memberRelationship.id
+    }))
+
+    let relationshipToDelete = this.state.memberRelToDelete
+    let deleteurl = `http://localhost:3000/members/${relationshipToDelete}`
+    let obj = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
+    };
+
+    fetch(deleteurl, obj)
+
+
+    
+  }
   
   render() {
     return (
@@ -95,14 +133,23 @@ export default class SmallSidebar extends Component {
                     >
                       {serverUserIsMemberOf.server.name}
                     </li>
+                  {/* X to delete */}
+                  <div>
+                    <li 
+                    onClick={(event) => this.deleteServer(event)}
+                    value={serverUserIsMemberOf.server.id}
+                    >
+                      X
+                    </li>
+                  </div>
                   </ul>
                 </div>
-              )) : <h1> Create a Server!</h1> }
+              )) : <h1 className="text-white"> Create a Server!</h1> }
             </div>
           </div>
           {/* Create Server Button */}
           {/* When i Comment out this form my logo and profile pic load but they wont with the form uncommented */}
-          <div className="create-server"> 
+          {/* <div className="create-server"> 
           <form onSubmit={(event) => this.createServer(event)}>
           <div>
                 <input
@@ -121,7 +168,7 @@ export default class SmallSidebar extends Component {
             </button>
           </div>
           </form>
-          </div>
+          </div> */}
           {/* LogOut Button */}
           <div className="mb-5">
             <button

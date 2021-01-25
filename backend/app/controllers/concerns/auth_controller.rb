@@ -25,4 +25,11 @@ class AuthController < ApplicationController
         @member = Member.create(server_id: params[:server_id], user_id: params[:user_id], admin: [:admin])
         render json: @member
     end
+
+
+    def getserver
+        @member = Member.find_by(user_id: params[:user_id], server_id: params[:server_id])
+        render json: @member
+    end
+
 end
