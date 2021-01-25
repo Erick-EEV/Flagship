@@ -11,7 +11,8 @@ export default class Home extends Component {
     selectedChatroomId: 0,
     selectedChatroom: [],
     messages: [],
-    newRelationship: []
+    newRelationship: [],
+    newServer: []
   };
   componentDidMount() {
     let userurl = `http://localhost:3000/users/${this.props.currentuserid}`;
@@ -62,10 +63,16 @@ export default class Home extends Component {
     })
   }
 
+  updateServers = (newServer) => {
+    this.setState({
+      newServer: [...this.state.newServer, newServer]
+    })
+  }
+
   render() {
     return (
       <div className="flex flex-row h-screen">
-        <SmallSidebar currentUser={this.state.currentUser} selectServer={this.selectServer} history={this.props.history} loadLogOut={this.props.loadLogOut}/>
+        <SmallSidebar updateServers={this.updateServers} currentUser={this.state.currentUser} selectServer={this.selectServer} history={this.props.history} loadLogOut={this.props.loadLogOut}/>
         <BigSidebar selectedChatrooms={this.state.selectedChatrooms} serverId={this.state.selectedServerId} selectChatroom={this.selectChatroom} loadSelectChatroom={this.loadSelectChatroom} addServerToState={this.addServerToState}/>
         <div className="flex-auto"> <Chatroom updateMessages={this.updateMessages} selectedChatroomId={this.state.selectedChatroomId} setMessages={this.setMessages} messages={this.state.messages}  /> </div>
       </div>

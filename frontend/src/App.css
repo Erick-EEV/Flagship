@@ -28,6 +28,7 @@
 }
 
 .chatroom-div{
+    overflow: scroll;
     /* left:  110px; */
     position: relative;
     /* top: -10px; */

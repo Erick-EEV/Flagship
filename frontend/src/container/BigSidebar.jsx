@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Search from "../presentational/Search";
+import Add from '../images/add-circle-outline (1).svg'
 
 export default class BigSidebar extends Component {
   state = {
     searchResult: "",
-    result: {}
+    result: {},
+    chatroomTitle: ""
   };
 
   componentDidUpdate(prevProps) {
@@ -45,13 +47,23 @@ export default class BigSidebar extends Component {
       .then((server) => this.setState({ result: server }));
   };
 
+  chatroomTitle = (event) => {
+    this.setState({
+      chatroomTitle: event.target.value
+    })
+    // console.log(event.target.value);
+  }
+
+  createChatroom = () => {
+    
+  }
+
   render() {
     return (
       
       <div className="w-64 h-screen mt-8 bg-gray-800 sm:mt-0">
         <div className="flex items-center justify-center mt-10">
           {/* BidSidebar properties */}
-
           <div class="pt-2 relative mx-auto text-gray-600 searchbar">
             <form onSubmit={(event) => this.search(event)}>
               <div>
@@ -117,6 +129,27 @@ export default class BigSidebar extends Component {
             </nav>
           ))}
         </span>
+                  {/* Create Chatroom Button */}
+                  <div className="create-chatroom"> 
+          <form>
+          <div>
+                <input
+                  onChange={(event) => this.chatroomTitle(event)}
+                  value={this.state.chatroomTitle}
+                  class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                  type="chatroom"
+                  name="chatroom"
+                  placeholder="New Chatroom"
+                />
+              </div>
+          
+          <div className="mb-50 create-chatroom">
+            <button onClick={(event) => this.createChatroom(event)}>
+              <img src={Add} className="w-10 h-10 mx-auto mb-3"/>
+            </button>
+          </div>
+          </form>
+          </div>
       </div>
     );
   }

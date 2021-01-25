@@ -23,7 +23,7 @@ export default class Chatroom extends Component {
   handleOnChange(event){
     event.preventDefault();
     this.setState({ newMessage: event.target.value });
-    console.log(event.target.value);
+    // console.log(event.target.value);
   }
 
   createMessage(event){
@@ -47,7 +47,6 @@ export default class Chatroom extends Component {
     .then(resp => resp.json())
     .then(message => this.props.updateMessages(message))
 
-    // event.target.value = ""
   }
 
   
