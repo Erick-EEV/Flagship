@@ -116,7 +116,7 @@ export default class SmallSidebar extends Component {
               </div>
           
           <div className="mb-50 create-server">
-            <button type="submit" >
+            <button type="submit"  href="http://localhost:3001/loggedIn" >
               <img src={Add} className="w-10 h-10 mx-auto mb-3"/>
             </button>
           </div>
