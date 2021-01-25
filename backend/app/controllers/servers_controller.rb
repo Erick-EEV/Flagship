@@ -17,7 +17,7 @@ class ServersController < ApplicationController
     @server = Server.new(server_params)
 
     if @server.save
-      render json: @server, status: :created, location: @server
+      render json: @server, include: [:chatrooms => {:include => :messages}]
     else
       render json: @server.errors, status: :unprocessable_entity
     end
