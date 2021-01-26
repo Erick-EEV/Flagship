@@ -45,7 +45,6 @@ export default class SignUpForm extends Component {
   };
 
   render() {
-    console.log(this.state.current_user)
     return (
       <div>
         <div class="bg-grey-lighter min-h-screen flex flex-col">

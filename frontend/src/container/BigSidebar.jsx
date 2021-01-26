@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Search from "../presentational/Search";
-import Add from '../images/add-circle-outline (1).svg'
+import Add from "../images/add-circle-outline (1).svg";
 
 export default class BigSidebar extends Component {
   state = {
     searchResult: "",
     result: {},
-    chatroomTitle: ""
+    chatroomTitle: "",
   };
 
   componentDidUpdate(prevProps) {
@@ -17,7 +17,7 @@ export default class BigSidebar extends Component {
       fetch(url)
         .then((resp) => resp.json())
         .then((server) => {
-          this.props.loadSelectChatroom(server.chatrooms)
+          this.props.loadSelectChatroom(server.chatrooms);
           // console.log("fetch");
         });
     }
@@ -49,16 +49,16 @@ export default class BigSidebar extends Component {
 
   chatroomTitle = (event) => {
     this.setState({
-      chatroomTitle: event.target.value
-    })
+      chatroomTitle: event.target.value,
+    });
     // console.log(event.target.value);
-  }
+  };
 
   createChatroom = (event) => {
     event.preventDefault();
-    let url = "http://localhost:3000/chatrooms"
-    let newChatroom = this.state.chatroomTitle
-    let serverId = this.props.serverId
+    let url = "http://localhost:3000/chatrooms";
+    let newChatroom = this.state.chatroomTitle;
+    let serverId = this.props.serverId;
 
     let reqObj = {
       method: "POST",
@@ -70,13 +70,29 @@ export default class BigSidebar extends Component {
     };
 
     fetch(url, reqObj)
-    .then(resp => resp.json())
-    .then(newChatroom => this.props.updateChat(newChatroom))
-  }
+      .then((resp) => resp.json())
+      .then((newChatroom) => this.props.updateChat(newChatroom));
+  };
+
+  deleteChat = (event) => {
+    event.preventDefault();
+    let chatroomId = event.target.value;
+    let url = `http://localhost:3000/chatrooms/${chatroomId}`;
+
+    let reqObj = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+
+    fetch(url, reqObj);
+    console.log("deleted");
+  };
 
   render() {
     return (
-      
       <div className="w-64 h-screen mt-8 bg-gray-800 sm:mt-0">
         <div className="flex items-center justify-center mt-10">
           {/* BidSidebar properties */}
@@ -114,7 +130,10 @@ export default class BigSidebar extends Component {
           {/* Search box */}
           <div className="bg-white">
             {/* {this.state.result?.name} */}
-            <Search result={this.state.result} addServerToState={this.props.addServerToState}/>
+            <Search
+              result={this.state.result}
+              addServerToState={this.props.addServerToState}
+            />
           </div>
           {/* Search Results */}
           <div className="chats-div">
@@ -123,6 +142,7 @@ export default class BigSidebar extends Component {
           {/* Chatroom Div Above and Chatroom Titles Below */}
         </div>
         <span className="mx-4 font-medium">
+          {/* {console.log(this.props.selectedChatrooms)} */}
           {this.props.selectedChatrooms?.map((chat) => (
             <nav className="mt-10">
               <a
@@ -138,6 +158,20 @@ export default class BigSidebar extends Component {
                       >
                         {chat.title}
                       </li>
+
+                      <div className="delete-chatroom">
+                        {this.props.currentUser.members.find(
+                          (relationship) =>
+                            relationship.server_id === this.props.serverId
+                        ).admin ? (
+                          <li
+                            onClick={(event) => this.deleteChat(event)}
+                            value={chat.id}
+                          >
+                            X
+                          </li>
+                        ) : null}
+                      </div>
                     </ul>
                   </div>
                 </span>
@@ -145,27 +179,26 @@ export default class BigSidebar extends Component {
             </nav>
           ))}
         </span>
-                  {/* Create Chatroom Button */}
-                  <div className="create-chatroom"> 
+        {/* Create Chatroom Button */}
+        <div className="create-chatroom">
           <form>
-          <div>
-                <input
-                  onChange={(event) => this.chatroomTitle(event)}
-                  value={this.state.chatroomTitle}
-                  class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                  type="chatroom"
-                  name="chatroom"
-                  placeholder="New Chatroom"
-                />
+            <div>
+              <input
+                onChange={(event) => this.chatroomTitle(event)}
+                value={this.state.chatroomTitle}
+                class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                type="chatroom"
+                name="chatroom"
+                placeholder="New Chatroom"
+              />
+              <div className="mb-50 create-chatroom">
+                <button onClick={(event) => this.createChatroom(event)}>
+                  <img src={Add} className="w-10 h-10 mx-auto mb-3" />
+                </button>
               </div>
-          
-          <div className="mb-50 create-chatroom">
-            <button onClick={(event) => this.createChatroom(event)}>
-              <img src={Add} className="w-10 h-10 mx-auto mb-3"/>
-            </button>
-          </div>
+            </div>
           </form>
-          </div>
+        </div>
       </div>
     );
   }

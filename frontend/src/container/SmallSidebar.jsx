@@ -104,7 +104,7 @@ export default class SmallSidebar extends Component {
   
   render() {
     return (
-      <div className="flex flex-row w-24 h-full bg-gray-900">
+      <div className="flex flex-row h-full bg-gray-900 w-72">
         <nav class="justify-between flex flex-col">
           <div class="mt-10">
             {/* Home-Button */}
@@ -123,9 +123,9 @@ export default class SmallSidebar extends Component {
               </a>
             </div>
             {/* Server Names */}
-            <div class="bg-blue-800 text-white">
+            <div class="bg-blue-800 text-white server-div">
               {this.props.currentUser.members ? this.props.currentUser.members.map((serverUserIsMemberOf) => (
-                <div class="mt-5">
+                <div class="mt-5 ml-20">
                   <ul>
                     <li
                       onClick={(event) => this.props.selectServer(event)}
@@ -134,12 +134,13 @@ export default class SmallSidebar extends Component {
                       {serverUserIsMemberOf.server.name}
                     </li>
                   {/* X to delete */}
-                  <div>
+
+                  <div className="delete-server">
                     <li 
                     onClick={(event) => this.deleteServer(event)}
                     value={serverUserIsMemberOf.server.id}
                     >
-                      X
+                      Leave
                     </li>
                   </div>
                   </ul>
@@ -149,22 +150,22 @@ export default class SmallSidebar extends Component {
           </div>
           {/* Create Server Button */}
           {/* When i Comment out this form my logo and profile pic load but they wont with the form uncommented */}
-          <div className="create-server"> 
+          <div className="w-32 create-server"> 
           <form onSubmit={(event) => this.createServer(event)}>
           <div>
                 <input
                   onChange={(event) => this.serverName(event)}
                   value={this.state.newServer}
-                  class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                  class="w-45 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                   type="server"
                   name="server"
-                  placeholder="New Servers"
+                  placeholder="New Server"
                 />
               </div>
           
           <div className="mb-50 create-server">
             <button type="submit"  href="http://localhost:3001/loggedIn" >
-              <img src={Add} className="w-10 h-10 mx-auto mb-3"/>
+              <img src={Add} className="w-full h-10 mx-auto mb-3"/>
             </button>
           </div>
           </form>

@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import Logo from "./Logo";
 
 export default class Chatroom extends Component {
-
-
   state = {
     newMessage: "",
-    messageObj: {}
-  }
-  
+    messageObj: {},
+  };
+
   componentDidUpdate(prevProps) {
     if (prevProps.selectedChatroomId !== this.props.selectedChatroomId) {
       let url = `http://localhost:3000/chatrooms/${this.props.selectedChatroomId}`;
@@ -16,23 +14,23 @@ export default class Chatroom extends Component {
       fetch(url)
         .then((resp) => resp.json())
         .then((chatroom) => {
-            this.props.setMessages(chatroom.messages)
+          this.props.setMessages(chatroom.messages);
         });
     }
   }
-  handleOnChange(event){
+  handleOnChange(event) {
     event.preventDefault();
     this.setState({ newMessage: event.target.value });
     // console.log(event.target.value);
   }
 
-  createMessage(event){
+  createMessage(event) {
     event.preventDefault();
-    let url = "http://localhost:3000/messages"
-    let newMessage = this.state.newMessage
-    let userId = localStorage.getItem("userId")
-    let username = localStorage.getItem("username")
-    let chatroomId = this.props.selectedChatroomId
+    let url = "http://localhost:3000/messages";
+    let newMessage = this.state.newMessage;
+    let userId = localStorage.getItem("userId");
+    let username = localStorage.getItem("username");
+    let chatroomId = this.props.selectedChatroomId;
 
     let reqObj = {
       method: "POST",
@@ -40,22 +38,22 @@ export default class Chatroom extends Component {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ user_id: userId, text: newMessage, chatroom_id: chatroomId, owner: username}),
+      body: JSON.stringify({
+        user_id: userId,
+        text: newMessage,
+        chatroom_id: chatroomId,
+        owner: username,
+      }),
     };
 
     fetch(url, reqObj)
-    .then(resp => resp.json())
-    .then(message => this.props.updateMessages(message))
-
+      .then((resp) => resp.json())
+      .then((message) => this.props.updateMessages(message));
   }
 
-  
   render() {
     return (
       <div class="z-0 ml-10 chatroom-div">
-            <div className="logo">
-          <Logo />
-          </div>
         <div>
           {/* Message */}
           <div className="messages-div">
@@ -67,13 +65,13 @@ export default class Chatroom extends Component {
                 <h2>{message.text ? message.text : null}</h2>
               </div>
             ))}
-          </div>
+     
           {/* New Message form */}
           <div>
             <form onSubmit={(event) => this.createMessage(event)}>
               <div>
                 <input
-                onChange={(event) => this.handleOnChange(event)}
+                  onChange={(event) => this.handleOnChange(event)}
                   placeholder="Enter Message"
                   id="message"
                   type="message"
@@ -81,7 +79,7 @@ export default class Chatroom extends Component {
               </div>
               <div className="submit-button">
                 <button
-                type="submit"
+                  type="submit"
                   placeholder="Submit"
                   class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
@@ -89,9 +87,11 @@ export default class Chatroom extends Component {
                 </button>
               </div>
             </form>
+                </div>    
           </div>
         </div>
       </div>
+      
     );
   }
 }

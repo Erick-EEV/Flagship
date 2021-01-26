@@ -5,14 +5,15 @@ import Chatroom from './Chatroom'
 
 export default class Home extends Component {
   state = {
-    currentUser: [],
+    currentUser: {},
     selectedServerId: 0,
     selectedChatrooms: [],
     selectedChatroomId: 0,
     selectedChatroom: [],
     messages: [],
     newRelationship: [],
-    newServer: []
+    newServer: [],
+    adminRes: null
   };
   componentDidMount() {
     let userurl = `http://localhost:3000/users/${this.props.currentuserid}`;
@@ -23,6 +24,7 @@ export default class Home extends Component {
           currentUser: user,
         })
       );
+
   }
 
   loadSelectChatroom = (server) => {
@@ -76,11 +78,13 @@ export default class Home extends Component {
   }
 
   render() {
+    // console.log(this.state.adminRes);
+    // this.state.currentUser.members?.map((memberRel) => console.log(memberRel.admin))
     return (
       <div className="flex flex-row h-screen">
         <SmallSidebar updateServers={this.updateServers} currentUser={this.state.currentUser} selectServer={this.selectServer} history={this.props.history} loadLogOut={this.props.loadLogOut}/>
-        <BigSidebar updateChat={this.updateChat} selectedChatrooms={this.state.selectedChatrooms} serverId={this.state.selectedServerId} selectChatroom={this.selectChatroom} loadSelectChatroom={this.loadSelectChatroom} addServerToState={this.addServerToState}/>
-        <div className="flex-auto"> <Chatroom updateMessages={this.updateMessages} selectedChatroomId={this.state.selectedChatroomId} setMessages={this.setMessages} messages={this.state.messages}  /> </div>
+        <BigSidebar currentUser={this.state.currentUser} updateChat={this.updateChat} selectedChatrooms={this.state.selectedChatrooms} serverId={this.state.selectedServerId} selectChatroom={this.selectChatroom} loadSelectChatroom={this.loadSelectChatroom} addServerToState={this.addServerToState}/>
+        <div className="flex-auto"> <Chatroom  updateMessages={this.updateMessages} selectedChatroomId={this.state.selectedChatroomId} setMessages={this.setMessages} messages={this.state.messages}  /> </div>
       </div>
     );
   }

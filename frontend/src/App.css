@@ -1,3 +1,7 @@
+.server-div{
+    padding-right: 10px;
+}
+
 .big-side-bar{
     margin-top: -3.5%;
     position: relative;
@@ -5,7 +9,7 @@
 
 .home-img{
     margin-bottom: 40%;
-    margin-top: -40%;
+    margin-top: 0%;
 }
 
 .chats-div{
@@ -27,11 +31,18 @@
     /* z-index: auto; */
 }
 
+/* Comment out chatroom-div to render messages */
+
 .chatroom-div{
-    overflow: scroll;
-    /* left:  110px; */
-    position: relative;
-    /* top: -10px; */
+    z-index: 0;
+    top: -10%;
+    position: fixed;
+    height: 100%;
+    background-image: url("./images/boatlogo.png");
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position-y: center;
+    /* opacity: 20%; */
 }
 
 .searchbar{
@@ -48,4 +59,10 @@
     position: fixed;
     margin-left: 10%;
     margin-top: -3%;
+}
+
+.messages-div{
+    bottom: -50%;
+    /* position: fixed; */
+    /* overflow: scroll; */
 }
