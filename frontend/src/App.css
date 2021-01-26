@@ -63,6 +63,7 @@
 
 .messages-div{
     bottom: -50%;
+    /* opacity: 100%; */
     /* position: fixed; */
     /* overflow: scroll; */
 }

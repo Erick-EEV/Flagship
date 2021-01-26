@@ -168,7 +168,7 @@ export default class BigSidebar extends Component {
                             onClick={(event) => this.deleteChat(event)}
                             value={chat.id}
                           >
-                            X
+                            Delete
                           </li>
                         ) : null}
                       </div>

@@ -51,9 +51,25 @@ export default class Chatroom extends Component {
       .then((message) => this.props.updateMessages(message));
   }
 
+  deleteMessage = (event) => {
+    event.preventDefault()
+    let messageId = event.target.value;
+    let url = `http://localhost:3000/messages/${messageId}`;
+
+    let reqObj = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+
+    fetch(url, reqObj);
+    console.log("deleted");
+  }
   render() {
     return (
-      <div class="z-0 ml-10 chatroom-div">
+      <div class="ml-10 chatroom-div">
         <div>
           {/* Message */}
           <div className="messages-div">
@@ -63,6 +79,19 @@ export default class Chatroom extends Component {
                   <h6>{message.owner ? message.owner : null}</h6>
                 </div>
                 <h2>{message.text ? message.text : null}</h2>
+                <div className="delete-message">
+                        {this.props.currentUser.members.find(
+                          (relationship) =>
+                            relationship.server_id === this.props.serverId
+                        ).admin ? (
+                          <li
+                            onClick={(event) => this.deleteMessage(event)}
+                            value={message.id}
+                          >
+                            X
+                          </li>
+                        ) : null}
+                      </div>
               </div>
             ))}
      

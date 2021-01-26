@@ -149,7 +149,6 @@ export default class SmallSidebar extends Component {
             </div>
           </div>
           {/* Create Server Button */}
-          {/* When i Comment out this form my logo and profile pic load but they wont with the form uncommented */}
           <div className="w-32 create-server"> 
           <form onSubmit={(event) => this.createServer(event)}>
           <div>
