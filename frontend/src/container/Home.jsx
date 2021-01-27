@@ -22,7 +22,7 @@ export default class Home extends Component {
       .then((user) =>
         this.setState({
           currentUser: user,
-        })
+        }, console.log(user))
       );
 
   }

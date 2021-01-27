@@ -8,7 +8,7 @@ export default class SignUpForm extends Component {
   state = {
     username: "",
     password: "",
-    confirm: "",
+    image: "",
     current_user: {}
   };
 
@@ -26,17 +26,13 @@ export default class SignUpForm extends Component {
       },
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        image: this.state.image
       }),
     };
     fetch(url, reqObj)
     .then(response => response.json())
     .then(user => this.props.callBack(user))
-    // (user => 
-    //   this.setState({
-    //   current_user: user
-    // })
-    // )
   };
 
   inputs = (e) => {
@@ -69,11 +65,11 @@ export default class SignUpForm extends Component {
                   onChange={(event) => this.inputs(event)}
                 />
                 <input
-                  type="password"
+                  type="profilepic"
                   class="block border border-grey-light w-full p-3 rounded mb-4"
-                  name="confirm"
-                  value={this.state.confirm}
-                  placeholder="Confirm Password"
+                  name="image"
+                  value={this.state.image}
+                  placeholder="Profile Pic"
                   onChange={(event) => this.inputs(event)}
                 />
                 {/* <Link to="/loggedIn"> */}
