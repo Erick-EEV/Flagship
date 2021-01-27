@@ -149,7 +149,7 @@ export default class BigSidebar extends Component {
                 className="flex items-center px-8 py-2 text-gray-100 bg-gray-700 border-r-4 border-gray-100"
                 href="#"
               >
-                <span className="mx-4 font-medium">
+                <span className="mx-4 font-medium font-semibold">
                   <div className="chatroom-title">
                     <ul>
                       <li

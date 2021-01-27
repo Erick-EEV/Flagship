@@ -123,7 +123,7 @@ export default class SmallSidebar extends Component {
               </a>
             </div>
             {/* Server Names */}
-            <div class="bg-blue-800 text-white server-div">
+            <div class="bg-blue-800 text-white font-bold server-div">
               {this.props.currentUser.members ? this.props.currentUser.members.map((serverUserIsMemberOf) => (
                 <div class="mt-5 ml-20">
                   <ul>

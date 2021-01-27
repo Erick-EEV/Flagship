@@ -42,7 +42,7 @@
     background-repeat: no-repeat;
     width: 100%;
     background-position-y: center;
-    /* opacity: 20%; */
+    opacity: 20%;
 }
 
 .searchbar{
@@ -51,7 +51,7 @@
 }
 .submit-button{
     position: relative;
-    left: 20%;
+    left: 15%;
     bottom: 30px;
 }
 
@@ -62,8 +62,8 @@
 }
 
 .messages-div{
-    bottom: -50%;
-    /* opacity: 100%; */
     /* position: fixed; */
-    /* overflow: scroll; */
+    margin-top: 40%;
+    /* height: 50vh; */
+    opacity: 80%;
 }
