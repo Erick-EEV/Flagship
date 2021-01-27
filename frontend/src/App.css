@@ -1,69 +1,69 @@
-.server-div{
-    padding-right: 10px;
+.server-div {
+  padding-right: 10px;
 }
 
-.big-side-bar{
-    margin-top: -3.5%;
-    position: relative;
+.big-side-bar {
+  margin-top: -3.5%;
+  position: relative;
 }
 
-.home-img{
-    margin-bottom: 40%;
-    margin-top: 0%;
+.home-img {
+  margin-bottom: 40%;
+  margin-top: 0%;
 }
 
-.chats-div{
-    margin-top: 40%;
+.chats-div {
+  margin-top: 40%;
 }
 
-.welcome-flagship{
-    margin-top: 10%;
+.welcome-flagship {
+  margin-top: 10%;
 }
 
-.login-logo{
-    margin-left: 28%;
+.login-logo {
+  margin-left: 28%;
 }
 
-.logo-init-page{
-    /* margin-left: 200%; */
-    opacity: 20%;
-    /* margin-top: -50%; */
-    /* z-index: auto; */
+.logo-init-page {
+  /* margin-left: 200%; */
+  opacity: 20%;
+  /* margin-top: -50%; */
+  /* z-index: auto; */
 }
 
 /* Comment out chatroom-div to render messages */
 
-.chatroom-div{
-    z-index: 0;
-    top: -10%;
-    position: fixed;
-    height: 100%;
-    background-image: url("./images/boatlogo.png");
-    background-repeat: no-repeat;
-    width: 100%;
-    background-position-y: center;
-    opacity: 20%;
+.chatroom-div {
+  z-index: 0;
+  top: -10%;
+  position: fixed;
+  height: 100%;
+  background-image: url("./images/boatlogo2.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  background-position-y: center;
+  /* opacity: 20%; */
 }
 
-.searchbar{
-    margin-top: -10%;
-    position: absolute;
+.searchbar {
+  margin-top: -10%;
+  position: absolute;
 }
-.submit-button{
-    position: relative;
-    left: 15%;
-    bottom: 30px;
-}
-
-.add-button{
-    position: fixed;
-    margin-left: 10%;
-    margin-top: -3%;
+.submit-button {
+  position: relative;
+  left: 15%;
+  bottom: 30px;
 }
 
-.messages-div{
-    /* position: fixed; */
-    margin-top: 40%;
-    /* height: 50vh; */
-    opacity: 80%;
+.add-button {
+  position: fixed;
+  margin-left: 10%;
+  margin-top: -3%;
+}
+
+.messages-div {
+  /* position: fixed; */
+  margin-top: 40%;
+  /* height: 50vh; */
+  /* opacity: 100%; */
 }
