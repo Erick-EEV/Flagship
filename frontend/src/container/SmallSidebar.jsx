@@ -44,6 +44,7 @@ export default class SmallSidebar extends Component {
     this.setState({
       newServerId: newServer.id
     })
+    
     )
 
     let memberurl = "http://localhost:3000/members"

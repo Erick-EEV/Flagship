@@ -76,10 +76,10 @@ export default class Chatroom extends Component {
       <div className=" messages-div">
             {this.props.messages?.map((message) => (
         <div>
-                <div>
+                <div className="w-full ">
                   <h6 className="font-bold text-blue-400">{message.owner ? message.owner : null}</h6>
-                </div>
                 <h2 className="font-bold text-white">{message.text ? message.text : null}</h2>
+                </div>
                 <div className="delete-message">
                         {this.props.currentUser.members.find(
                           (relationship) =>
