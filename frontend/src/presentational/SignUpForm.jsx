@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { atom, useRecoilState } from 'recoil'
-
-
+import { atom, useRecoilState } from "recoil";
 
 export default class SignUpForm extends Component {
   state = {
     username: "",
     password: "",
     image: "",
-    current_user: {}
+    current_user: {},
   };
-
-  
-  
 
   handleOnSubmit = (event) => {
     event.preventDefault();
@@ -27,12 +22,12 @@ export default class SignUpForm extends Component {
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
-        image: this.state.image
+        image: this.state.image,
       }),
     };
     fetch(url, reqObj)
-    .then(response => response.json())
-    .then(user => this.props.callBack(user))
+      .then((response) => response.json())
+      .then((user) => this.props.callBack(user));
   };
 
   inputs = (e) => {
@@ -73,13 +68,12 @@ export default class SignUpForm extends Component {
                   onChange={(event) => this.inputs(event)}
                 />
                 {/* <Link to="/loggedIn"> */}
-                  <button
-                    type="submit"
-                    
-                    class="w-full text-center py-3 rounded bg-green text-black hover:bg-green-dark focus:outline-none my-1"
-                  >
-                    Create Account
-                  </button>
+                <button
+                  type="submit"
+                  class="w-full text-center py-3 rounded bg-green text-black hover:bg-green-dark focus:outline-none my-1"
+                >
+                  Create Account
+                </button>
                 {/* </Link> */}
               </form>
               <div class="text-center text-sm text-grey-dark mt-4">

@@ -35,9 +35,9 @@ export default function App() {
   }, [currentuserid]);
 
   const loadLogOut = () => {
-    localStorage.setItem("userId", "false")
-    setUser("false")
-  }
+    localStorage.setItem("userId", "false");
+    setUser("false");
+  };
 
   return (
     <div class="bg-gray-600">
@@ -54,7 +54,11 @@ export default function App() {
             </Route>
             {/* <Route exact path="/loggedIn" >  { currentuserid === "false" ? <Redirect to="/" /> : <SmallSidebar currentuserid={currentuserid}/>}  </Route> */}
             <Route exact path="/loggedIn">
-              {currentuserid === "false" ? <Redirect to="/" /> : <Home currentuserid={currentuserid} loadLogOut={loadLogOut}/> }
+              {currentuserid === "false" ? (
+                <Redirect to="/" />
+              ) : (
+                <Home currentuserid={currentuserid} loadLogOut={loadLogOut} />
+              )}
             </Route>
             <Route exact path="/signUp">
               {currentuserid !== "false" ? (

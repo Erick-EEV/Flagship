@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import Image from "../images/boatlogo.png";
-import Add from '../images/add-circle-outline (1).svg'
+import Add from "../images/add-circle-outline (1).svg";
 
 export default class SmallSidebar extends Component {
-
-
   state = {
     newServer: "",
     newServerId: 0,
-    memberRelToDelete: 0
-  }
-  
+    memberRelToDelete: 0,
+  };
+
   logOut = (event) => {
     event.preventDefault();
     this.props.loadLogOut();
@@ -19,15 +17,15 @@ export default class SmallSidebar extends Component {
 
   serverName = (event) => {
     this.setState({
-      newServer: event.target.value
-    })
-  }
+      newServer: event.target.value,
+    });
+  };
 
   createServer = (event) => {
     event.preventDefault();
-    let url = "http://localhost:3000/servers"
-    let newServer = this.state.newServer
-    let userId = localStorage.getItem("userId")
+    let url = "http://localhost:3000/servers";
+    let newServer = this.state.newServer;
+    let userId = localStorage.getItem("userId");
 
     let reqObj = {
       method: "POST",
@@ -35,42 +33,43 @@ export default class SmallSidebar extends Component {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ name: newServer, user_id: userId, joined: true}),
+      body: JSON.stringify({ name: newServer, user_id: userId, joined: true }),
     };
 
     fetch(url, reqObj)
-    .then(resp => resp.json())
-    .then(newServer => 
-    this.setState({
-      newServerId: newServer.id
-    })
-    
-    )
+      .then((resp) => resp.json())
+      .then((newServer) =>
+        this.setState({
+          newServerId: newServer.id,
+        })
+      );
 
-    let memberurl = "http://localhost:3000/members"
-    let newServerId = this.state.newServerId
-    
+    let memberurl = "http://localhost:3000/members";
+    let newServerId = this.state.newServerId;
+
     let obj = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ user_id: userId, server_id: newServerId, admin: true }),
+      body: JSON.stringify({
+        user_id: userId,
+        server_id: newServerId,
+        admin: true,
+      }),
     };
 
     fetch(memberurl, obj)
-    .then(resp => resp.json())
-    .then( memberRel => console.log(memberRel))
-    
-    
-  }
+      .then((resp) => resp.json())
+      .then((memberRel) => console.log(memberRel));
+  };
 
   deleteServer = (event) => {
     event.preventDefault();
-    let serverId = event.target.value
-    let userId = localStorage.getItem("userId")
-    let url = `http://localhost:3000/getserver`
+    let serverId = event.target.value;
+    let userId = localStorage.getItem("userId");
+    let url = `http://localhost:3000/getserver`;
 
     let reqObj = {
       method: "POST",
@@ -78,31 +77,30 @@ export default class SmallSidebar extends Component {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({user_id: userId, server_id: serverId})
+      body: JSON.stringify({ user_id: userId, server_id: serverId }),
     };
 
     fetch(url, reqObj)
-    .then(resp => resp.json())
-    .then( memberRelationship => this.setState({
-      memberRelToDelete: memberRelationship.id
-    }))
+      .then((resp) => resp.json())
+      .then((memberRelationship) =>
+        this.setState({
+          memberRelToDelete: memberRelationship.id,
+        })
+      );
 
-    let relationshipToDelete = this.state.memberRelToDelete
-    let deleteurl = `http://localhost:3000/members/${relationshipToDelete}`
+    let relationshipToDelete = this.state.memberRelToDelete;
+    let deleteurl = `http://localhost:3000/members/${relationshipToDelete}`;
     let obj = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-      }
+      },
     };
 
-    fetch(deleteurl, obj)
+    fetch(deleteurl, obj);
+  };
 
-
-    
-  }
-  
   render() {
     return (
       <div className="flex flex-row h-full bg-gray-900 w-72">
@@ -125,34 +123,38 @@ export default class SmallSidebar extends Component {
             </div>
             {/* Server Names */}
             <div class="bg-blue-800 text-white font-bold server-div">
-              {this.props.currentUser.members ? this.props.currentUser.members.map((serverUserIsMemberOf) => (
-                <div class="mt-5 ml-20">
-                  <ul>
-                    <li
-                      onClick={(event) => this.props.selectServer(event)}
-                      value={serverUserIsMemberOf.server.id}
-                    >
-                      {serverUserIsMemberOf.server.name}
-                    </li>
-                  {/* X to delete */}
+              {this.props.currentUser.members ? (
+                this.props.currentUser.members.map((serverUserIsMemberOf) => (
+                  <div class="mt-5 ml-20">
+                    <ul>
+                      <li
+                        onClick={(event) => this.props.selectServer(event)}
+                        value={serverUserIsMemberOf.server.id}
+                      >
+                        {serverUserIsMemberOf.server.name}
+                      </li>
+                      {/* X to delete */}
 
-                  <div className="delete-server">
-                    <li 
-                    onClick={(event) => this.deleteServer(event)}
-                    value={serverUserIsMemberOf.server.id}
-                    >
-                      Leave
-                    </li>
+                      <div className="delete-server">
+                        <li
+                          onClick={(event) => this.deleteServer(event)}
+                          value={serverUserIsMemberOf.server.id}
+                        >
+                          Leave
+                        </li>
+                      </div>
+                    </ul>
                   </div>
-                  </ul>
-                </div>
-              )) : <h1 className="text-white"> Create a Server!</h1> }
+                ))
+              ) : (
+                <h1 className="text-white"> Create a Server!</h1>
+              )}
             </div>
           </div>
           {/* Create Server Button */}
-          <div className="w-32 create-server"> 
-          <form onSubmit={(event) => this.createServer(event)}>
-          <div>
+          <div className="w-32 create-server">
+            <form onSubmit={(event) => this.createServer(event)}>
+              <div>
                 <input
                   onChange={(event) => this.serverName(event)}
                   value={this.state.newServer}
@@ -162,13 +164,13 @@ export default class SmallSidebar extends Component {
                   placeholder="New Server"
                 />
               </div>
-          
-          <div className="mb-50 create-server">
-            <button type="submit"  href="http://localhost:3001/loggedIn" >
-              <img src={Add} className="w-full h-10 mx-auto mb-3"/>
-            </button>
-          </div>
-          </form>
+
+              <div className="mb-50 create-server">
+                <button type="submit" href="http://localhost:3001/loggedIn">
+                  <img src={Add} className="w-full h-10 mx-auto mb-3" />
+                </button>
+              </div>
+            </form>
           </div>
           {/* LogOut Button */}
           <div className="mb-5">
