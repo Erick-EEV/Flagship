@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { atom, useRecoilState } from "recoil";
 
 export default class SignUpForm extends Component {
+  
   state = {
     username: "",
     password: "",
     image: "",
     current_user: {},
   };
+
+
 
   handleOnSubmit = (event) => {
     event.preventDefault();
